@@ -1,12 +1,15 @@
 #ifndef SORTALGO_H
 #define SORTALGO_H
 #include <vector>
+#include "algorithm.h"
 #include "tree.cpp"
 
 using namespace std;
 
 class SortAlgo
 {
+private:
+
 public:
     template<typename T>
     void BinaryTree(vector<T> &data);

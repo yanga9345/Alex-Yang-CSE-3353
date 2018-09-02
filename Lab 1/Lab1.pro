@@ -4,7 +4,6 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    algorithm.cpp \
     sort.cpp \
     bubble.cpp \
     merge.cpp \

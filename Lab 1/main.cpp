@@ -13,6 +13,11 @@ int main()
 {
     cout << "Hello World!" << endl;
 
+    enum AlgorithmType
+    {
+        BUBBLE, INSERTION, MERGE
+    };
+
     //algo.Load();
     //algo.Display();
     //algo.Select();

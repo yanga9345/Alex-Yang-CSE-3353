@@ -1,5 +1,5 @@
 #include "tree.h"
-
+/*
 struct Tree::Node * Tree::CreateNode(int id)
 {
     struct Tree::Node * node = new Tree::Node();
@@ -36,4 +36,5 @@ void Tree::CopySortedTree(Tree::Node * node, std::vector<int> &data, int &i)
         Tree::CopySortedTree(node->right, data, i);
     }
 }
+*/
 
