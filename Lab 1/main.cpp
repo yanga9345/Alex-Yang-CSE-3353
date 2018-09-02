@@ -1,5 +1,5 @@
 #include <iostream>
-#include "algorithm.cpp"
+#include "algorithm.h"
 #include "bubble.cpp"
 #include "insertion.cpp"
 #include "merge.cpp"

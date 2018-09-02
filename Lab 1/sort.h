@@ -1,8 +1,7 @@
 #ifndef SORT_H
 #define SORT_H
 #include "sortalgo.h"
-//#include "algorithm.h"
-#include "sortalgo.h"
+#include "algorithm.h"
 
 class Sort: public Algorithm
 {
@@ -11,6 +10,7 @@ private:
     vector<SortAlgo> algorithms;
     vector<int> intData;
 public:
+    Sort(vector<int> &);
     void Select(int id);
     void Execute();
 };
