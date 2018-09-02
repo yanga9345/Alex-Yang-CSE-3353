@@ -9,6 +9,11 @@ private:
 public:
     Algorithm();
     Algorithm(std::vector<int> &);
+    void Load();
+    void Exe();
+    void Save();
+    void Stats();
+    void Select();
 };
 
 #endif // ALGORITHM_H

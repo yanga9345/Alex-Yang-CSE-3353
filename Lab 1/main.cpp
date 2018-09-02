@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include "algorithm.h"
 #include "bubble.cpp"
 #include "insertion.cpp"
@@ -15,12 +16,22 @@ int main()
 
     enum AlgorithmType
     {
-        BUBBLE, INSERTION, MERGE
+        BUBBLE = 0,
+        INSERTION = 1,
+        MERGE = 2,
+        LAST
     };
 
-    //algo.Load();
-    //algo.Display();
-    //algo.Select();
+    for(int i = 0; i < Algorithm::Sort::Last; i++)
+    {
+
+        ifstream inFile(argv[i]);
+        Sort algo(inFile);
+        algo.Load();
+        //algo.Display();
+        //algo.Select();
+
+    }
     return 0;
 }
 /*

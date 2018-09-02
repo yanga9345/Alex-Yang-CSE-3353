@@ -10,9 +10,14 @@ private:
     vector<SortAlgo> algorithms;
     vector<int> intData;
 public:
-    Sort(vector<int> &);
+    Sort(vector<int> &dat)
+    {
+        intData = dat;
+    }
+
+    //Sort(vector<int> &);
     void Select(int id);
-    void Execute();
+    void Exe();
 };
 
 #endif // SORT_H
