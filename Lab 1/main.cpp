@@ -10,7 +10,7 @@
 
 using namespace std;
 
-int main()
+int main(char** argv)
 {
     cout << "Hello World!" << endl;
 
@@ -21,13 +21,16 @@ int main()
         MERGE = 2,
         LAST
     };
+    AlgorithmType algorithmtype;
 
-    for(int i = 0; i < Algorithm::Sort::Last; i++)
+    vector<int> numList;
+    Sort algo(numList);
+    for(int i = 0; i < algo.Last; i++)
     {
 
         ifstream inFile(argv[i]);
-        Sort algo(inFile);
-        algo.Load();
+        //Sort algo(inFile);
+        algo.Load(int(BUBBLE));
         //algo.Display();
         //algo.Select();
 

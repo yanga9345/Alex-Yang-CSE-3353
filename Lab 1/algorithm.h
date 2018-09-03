@@ -7,9 +7,13 @@ class Algorithm
 private:
     std::vector<int> intData;
 public:
+    std::vector<int> algorithmList;
+    int Last;
     Algorithm();
-    Algorithm(std::vector<int> &);
-    void Load();
+    void Load(std::vector<int> &dat)
+    {
+        intData = dat;
+    }
     void Exe();
     void Save();
     void Stats();

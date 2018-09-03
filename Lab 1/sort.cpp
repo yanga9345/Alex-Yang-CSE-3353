@@ -11,3 +11,8 @@ void Sort::Exe()
 {
     //activeAlgo(Sort::intData);
 }
+
+void Sort::Load(vector<int> &dat)
+{
+    intData = dat;
+}
