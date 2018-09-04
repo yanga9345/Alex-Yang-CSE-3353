@@ -54,14 +54,12 @@ SOURCES       = ../Lab1/main.cpp \
 		../Lab1/sort.cpp \
 		../Lab1/bubble.cpp \
 		../Lab1/merge.cpp \
-		../Lab1/insertion.cpp \
-		../Lab1/sortalgo.cpp 
+		../Lab1/insertion.cpp 
 OBJECTS       = main.o \
 		sort.o \
 		bubble.o \
 		merge.o \
-		insertion.o \
-		sortalgo.o
+		insertion.o
 DIST          = ../../Qt/5.9.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../../Qt/5.9.1/gcc_64/mkspecs/common/unix.conf \
 		../../Qt/5.9.1/gcc_64/mkspecs/common/linux.conf \
@@ -246,8 +244,7 @@ DIST          = ../../Qt/5.9.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../Lab1/sort.cpp \
 		../Lab1/bubble.cpp \
 		../Lab1/merge.cpp \
-		../Lab1/insertion.cpp \
-		../Lab1/sortalgo.cpp
+		../Lab1/insertion.cpp
 QMAKE_TARGET  = Lab1
 DESTDIR       = 
 TARGET        = Lab1
@@ -680,12 +677,6 @@ merge.o: ../Lab1/merge.cpp
 
 insertion.o: ../Lab1/insertion.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o insertion.o ../Lab1/insertion.cpp
-
-sortalgo.o: ../Lab1/sortalgo.cpp ../Lab1/sortalgo.h \
-		../Lab1/algorithm.h \
-		../Lab1/tree.cpp \
-		../Lab1/tree.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o sortalgo.o ../Lab1/sortalgo.cpp
 
 ####### Install
 

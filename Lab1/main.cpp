@@ -1,3 +1,15 @@
+/*
+ * Alex Yang
+ * Professor Clark
+ * CSE 3353
+ * September 9th, 2018
+ *
+ * Lab 1:
+ * This program will demonstrate the implementation of the strategy class design
+ * pattern using the Bubble, Insertion, and Merge sorting algorithms.
+ *
+ */
+
 #include <iostream>
 #include <fstream>
 #include "algorithm.h"
@@ -7,9 +19,11 @@
 #include "sort.h"
 #include "sortalgo.h"
 #include "tree.h"
+#include "filegenerator.h"
 
 using namespace std;
 
+//runs the whole program
 int main(int argc, char** argv)
 {
     enum AlgorithmType
@@ -21,33 +35,17 @@ int main(int argc, char** argv)
     };
     //AlgorithmType algorithmtype;
 
-    vector<int> numList;
-    numList.push_back(1);
     Sort algo;
-    //SortAlgo sa;
 
-    algo.Load(argv[1]);
-    algo.Select(0);
-    algo.Exe();
-    //sa.Bubble(algo.intData);
-    algo.Display();
-    /*
-    for(int i = 0; i < algo.Last; i++)
+    for(int i = 0; i < 3; i++)
     {
-
-        //ifstream inFile(argv[i]);
-        //Sort algo(inFile);
-        //algo.Load(int(BUBBLE));
-        //algo.Display();
-        //algo.Select();
-
+        algo.Load(argv[1]);
+        algo.Select(i);
+        algo.Execute();
+        algo.Display();
+        //algo.Stats();
+        //algo.Save();
     }
-    */
-
-    //std::vector<void(*)(std::vector<int>&)> Sort::algorithms;
-
-    //load
-    //Sort::algorithms.push_back(&);
 
     return 0;
 }

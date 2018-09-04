@@ -6,7 +6,9 @@ Sort::Sort()
 {
     //for(int i = 0; i < 3; i++)
     //    algorithms.push_back(SortAlgo.algorithms[i]);
-    algorithms.push_back(SortAlgo::Bubble);
+    algorithms.push_back(SortAlgo::BubbleSort);
+    algorithms.push_back(SortAlgo::InsertionSort);
+    algorithms.push_back(SortAlgo::MergeSort);
 }
 
 //Sort::algorithms
@@ -29,7 +31,7 @@ void Sort::Load(char* dat)
 
 void Sort::Select(int id)
 {
-    if(id < algorithms.size() && id >= 0)
+    if(id < int(algorithms.size()) && id >= 0)
         activeAlgo = algorithms[id];
     else
     {
@@ -37,7 +39,7 @@ void Sort::Select(int id)
     }
 }
 
-void Sort::Exe()
+void Sort::Execute()
 {
     activeAlgo(intData);
 }

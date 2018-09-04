@@ -17,7 +17,7 @@ public:
     //void Load(vector<int> &dat);
     void Load(char*);
     void Select(int id);
-    void Exe();
+    void Execute();
     void Display();
     void Stats();
     void Save();
