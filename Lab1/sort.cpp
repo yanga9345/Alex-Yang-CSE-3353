@@ -4,7 +4,9 @@
 
 Sort::Sort()
 {
-
+    //for(int i = 0; i < 3; i++)
+    //    algorithms.push_back(SortAlgo.algorithms[i]);
+    //algorithms.push_back();
 }
 
 //Sort::algorithms
@@ -32,7 +34,7 @@ void Sort::Select(int id)
 
 void Sort::Exe()
 {
-    //activeAlgo(intData);
+    activeAlgo(intData);
 }
 
 void Sort::Display()
@@ -41,4 +43,15 @@ void Sort::Display()
     {
         cout << intData[i] << " ";
     }
+}
+
+void Sort::Stats()
+{
+
+}
+
+
+void Sort::Save()
+{
+
 }

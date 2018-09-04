@@ -43,14 +43,13 @@ int main(int argc, char** argv)
 
     }
     */
+
+    //std::vector<void(*)(std::vector<int>&)> Sort::algorithms;
+
+    //load
+    //Sort::algorithms.push_back(&);
+
     return 0;
 }
-/*
 
-std::vector<void(*)(std::vector<int>&)> Sort::algorithms;
-std
 
-//load
-Sort::algorithms.push_back(&)
-
-*/

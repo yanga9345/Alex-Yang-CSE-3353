@@ -6,6 +6,25 @@ SortAlgo::SortAlgo()
 }
 
 template<typename T>
+void SortAlgo::Bubble(vector<T> &data)
+{
+
+}
+
+template<typename T>
+void SortAlgo::Insertion(vector<T> &data)
+{
+
+}
+
+template<typename T>
+void SortAlgo::Merge(vector<T> &data)
+{
+
+}
+
+
+template<typename T>
 void SortAlgo::BinaryTree(vector<T> &data)
 {
     SortAlgo::BinaryTreeSort(data, data.size());

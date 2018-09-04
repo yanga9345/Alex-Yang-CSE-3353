@@ -4,14 +4,17 @@
 #include "algorithm.h"
 #include <fstream>
 
-class Sort//: public Algorithm
+class Sort: public Algorithm
 {
 private:
-    SortAlgo activeAlgo;
-    vector<SortAlgo> algorithms;
+    //SortAlgo activeAlgo;
+    //vector<SortAlgo> algorithms;
+    void(*activeAlgo)(vector<int>&) = NULL;
+    vector<void(*)(vector<int>&)> algorithms;
     vector<int> intData;
 public:
     Sort();
+
     //void Load(vector<int> &dat);
     void Load(char*);
     void Select(int id);

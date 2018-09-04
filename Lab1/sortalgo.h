@@ -12,7 +12,9 @@ class SortAlgo
 private:
 
 public:
+    static vector<void(*)(std::vector<int>&)> algorithms;
     SortAlgo();
+    /*
     SortAlgo(vector<int> &dat, int sortType)
     {
         if (sortType == 0)
@@ -32,6 +34,7 @@ public:
             cout << "Error. " << endl;
         }
     }
+    */
 
     template<typename T>
     void BinaryTree(vector<T> &data);
