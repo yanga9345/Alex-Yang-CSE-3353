@@ -41,7 +41,12 @@ void Sort::Select(int id)
 
 void Sort::Execute()
 {
+    auto start = std::chrono::high_resolution_clock::now();
     activeAlgo(intData);
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+    cout << "RunTime: " << setprecision(3) << elapsed.count() <<
+            " seconds " << endl;
 }
 
 void Sort::Display()
