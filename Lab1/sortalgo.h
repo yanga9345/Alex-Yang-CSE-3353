@@ -3,9 +3,6 @@
 #include <vector>
 #include <iostream>
 #include "tree.h"
-#include "bubble.h"
-#include "insertion.h"
-#include "merge.h"
 
 using namespace std;
 

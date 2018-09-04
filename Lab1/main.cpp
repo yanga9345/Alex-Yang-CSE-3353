@@ -13,9 +13,6 @@
 #include <iostream>
 #include <fstream>
 #include "algorithm.h"
-#include "bubble.h"
-#include "insertion.h"
-#include "merge.h"
 #include "sort.h"
 #include "sortalgo.h"
 #include "tree.h"

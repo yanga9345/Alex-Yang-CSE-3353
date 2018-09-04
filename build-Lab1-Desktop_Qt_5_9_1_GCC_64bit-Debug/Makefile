@@ -52,14 +52,10 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../Lab1/main.cpp \
 		../Lab1/sort.cpp \
-		../Lab1/bubble.cpp \
-		../Lab1/merge.cpp \
-		../Lab1/insertion.cpp 
+		../Lab1/tree.cpp 
 OBJECTS       = main.o \
 		sort.o \
-		bubble.o \
-		merge.o \
-		insertion.o
+		tree.o
 DIST          = ../../Qt/5.9.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../../Qt/5.9.1/gcc_64/mkspecs/common/unix.conf \
 		../../Qt/5.9.1/gcc_64/mkspecs/common/linux.conf \
@@ -235,16 +231,11 @@ DIST          = ../../Qt/5.9.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../../Qt/5.9.1/gcc_64/mkspecs/features/lex.prf \
 		../Lab1/Lab1.pro algorithm.h \
 		sort.h \
-		bubble.h \
-		merge.h \
-		insertion.h \
 		sortalgo.h \
 		tree.h \
 		filegenerator.h ../Lab1/main.cpp \
 		../Lab1/sort.cpp \
-		../Lab1/bubble.cpp \
-		../Lab1/merge.cpp \
-		../Lab1/insertion.cpp
+		../Lab1/tree.cpp
 QMAKE_TARGET  = Lab1
 DESTDIR       = 
 TARGET        = Lab1
@@ -649,34 +640,20 @@ compiler_clean:
 ####### Compile
 
 main.o: ../Lab1/main.cpp ../Lab1/algorithm.h \
-		../Lab1/bubble.h \
+		../Lab1/sort.h \
 		../Lab1/sortalgo.h \
-		../Lab1/tree.cpp \
 		../Lab1/tree.h \
-		../Lab1/insertion.h \
-		../Lab1/merge.h \
-		../Lab1/sort.h
+		../Lab1/filegenerator.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Lab1/main.cpp
 
 sort.o: ../Lab1/sort.cpp ../Lab1/sort.h \
 		../Lab1/sortalgo.h \
-		../Lab1/algorithm.h \
-		../Lab1/tree.cpp \
-		../Lab1/tree.h
+		../Lab1/tree.h \
+		../Lab1/algorithm.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o sort.o ../Lab1/sort.cpp
 
-bubble.o: ../Lab1/bubble.cpp ../Lab1/bubble.h \
-		../Lab1/sortalgo.h \
-		../Lab1/algorithm.h \
-		../Lab1/tree.cpp \
-		../Lab1/tree.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o bubble.o ../Lab1/bubble.cpp
-
-merge.o: ../Lab1/merge.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o merge.o ../Lab1/merge.cpp
-
-insertion.o: ../Lab1/insertion.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o insertion.o ../Lab1/insertion.cpp
+tree.o: ../Lab1/tree.cpp ../Lab1/tree.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tree.o ../Lab1/tree.cpp
 
 ####### Install
 
