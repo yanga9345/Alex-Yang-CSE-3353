@@ -2,8 +2,9 @@
 #define SORT_H
 #include "sortalgo.h"
 #include "algorithm.h"
+#include <fstream>
 
-class Sort: public Algorithm
+class Sort//: public Algorithm
 {
 private:
     SortAlgo activeAlgo;
@@ -11,9 +12,14 @@ private:
     vector<int> intData;
 public:
     Sort();
-    void Exe();
+    //void Load(vector<int> &dat);
+    void Load(char*);
     void Select(int id);
-    void Load(vector<int> &dat);
+    void Exe();
+    void Display();
+    void Stats();
+    void Save();
+
 };
 
 #endif // SORT_H

@@ -1,5 +1,10 @@
 #include "sortalgo.h"
 
+SortAlgo::SortAlgo()
+{
+
+}
+
 template<typename T>
 void SortAlgo::BinaryTree(vector<T> &data)
 {

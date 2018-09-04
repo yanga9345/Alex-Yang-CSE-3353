@@ -21,11 +21,16 @@ int main(int argc, char** argv)
         MERGE = 2,
         LAST
     };
-    AlgorithmType algorithmtype;
+    //AlgorithmType algorithmtype;
 
     vector<int> numList;
     numList.push_back(1);
-    Sort algo();
+    Sort algo;
+
+    //ifstream inFile(argv[2]);
+
+    algo.Load(argv[1]);
+    algo.Display();
     /*
     for(int i = 0; i < algo.Last; i++)
     {
