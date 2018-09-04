@@ -1,9 +1,9 @@
 #include <iostream>
 #include <fstream>
 #include "algorithm.h"
-#include "bubble.cpp"
-#include "insertion.cpp"
-#include "merge.cpp"
+#include "bubble.h"
+#include "insertion.h"
+#include "merge.h"
 #include "sort.h"
 #include "sortalgo.h"
 #include "tree.h"
@@ -12,8 +12,6 @@ using namespace std;
 
 int main(int argc, char** argv)
 {
-    cout << "Hello World!" << endl;
-
     enum AlgorithmType
     {
         BUBBLE = 0,
@@ -26,10 +24,12 @@ int main(int argc, char** argv)
     vector<int> numList;
     numList.push_back(1);
     Sort algo;
-
-    //ifstream inFile(argv[2]);
+    //SortAlgo sa;
 
     algo.Load(argv[1]);
+    algo.Select(0);
+    algo.Exe();
+    //sa.Bubble(algo.intData);
     algo.Display();
     /*
     for(int i = 0; i < algo.Last; i++)

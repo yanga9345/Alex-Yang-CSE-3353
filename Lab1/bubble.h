@@ -8,6 +8,7 @@ private:
 
 public:
     void Sort();
+    void Run();
 };
 
 #endif // BUBBLE_H

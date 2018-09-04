@@ -3,18 +3,17 @@
 #include "sortalgo.h"
 #include "algorithm.h"
 #include <fstream>
+#include <vector>
 
 class Sort: public Algorithm
 {
 private:
-    //SortAlgo activeAlgo;
-    //vector<SortAlgo> algorithms;
     void(*activeAlgo)(vector<int>&) = NULL;
     vector<void(*)(vector<int>&)> algorithms;
-    vector<int> intData;
+    //vector<int> intData;
 public:
     Sort();
-
+    vector<int> intData;
     //void Load(vector<int> &dat);
     void Load(char*);
     void Select(int id);

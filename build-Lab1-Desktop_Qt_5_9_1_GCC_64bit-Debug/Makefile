@@ -52,9 +52,15 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../Lab1/main.cpp \
 		../Lab1/sort.cpp \
+		../Lab1/bubble.cpp \
+		../Lab1/merge.cpp \
+		../Lab1/insertion.cpp \
 		../Lab1/sortalgo.cpp 
 OBJECTS       = main.o \
 		sort.o \
+		bubble.o \
+		merge.o \
+		insertion.o \
 		sortalgo.o
 DIST          = ../../Qt/5.9.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../../Qt/5.9.1/gcc_64/mkspecs/common/unix.conf \
@@ -215,6 +221,7 @@ DIST          = ../../Qt/5.9.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../../Qt/5.9.1/gcc_64/mkspecs/features/qt_config.prf \
 		../../Qt/5.9.1/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../Qt/5.9.1/gcc_64/mkspecs/features/spec_post.prf \
+		../Lab1/.qmake.stash \
 		../../Qt/5.9.1/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../Qt/5.9.1/gcc_64/mkspecs/features/toolchain.prf \
 		../../Qt/5.9.1/gcc_64/mkspecs/features/default_pre.prf \
@@ -234,8 +241,12 @@ DIST          = ../../Qt/5.9.1/gcc_64/mkspecs/features/spec_pre.prf \
 		merge.h \
 		insertion.h \
 		sortalgo.h \
-		tree.h ../Lab1/main.cpp \
+		tree.h \
+		filegenerator.h ../Lab1/main.cpp \
 		../Lab1/sort.cpp \
+		../Lab1/bubble.cpp \
+		../Lab1/merge.cpp \
+		../Lab1/insertion.cpp \
 		../Lab1/sortalgo.cpp
 QMAKE_TARGET  = Lab1
 DESTDIR       = 
@@ -407,6 +418,7 @@ Makefile: ../Lab1/Lab1.pro ../../Qt/5.9.1/gcc_64/mkspecs/linux-g++/qmake.conf ..
 		../../Qt/5.9.1/gcc_64/mkspecs/features/qt_config.prf \
 		../../Qt/5.9.1/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../Qt/5.9.1/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../Qt/5.9.1/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../Qt/5.9.1/gcc_64/mkspecs/features/toolchain.prf \
 		../../Qt/5.9.1/gcc_64/mkspecs/features/default_pre.prf \
@@ -581,6 +593,7 @@ Makefile: ../Lab1/Lab1.pro ../../Qt/5.9.1/gcc_64/mkspecs/linux-g++/qmake.conf ..
 ../../Qt/5.9.1/gcc_64/mkspecs/features/qt_config.prf:
 ../../Qt/5.9.1/gcc_64/mkspecs/linux-g++/qmake.conf:
 ../../Qt/5.9.1/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../Qt/5.9.1/gcc_64/mkspecs/features/exclusive_builds.prf:
 ../../Qt/5.9.1/gcc_64/mkspecs/features/toolchain.prf:
 ../../Qt/5.9.1/gcc_64/mkspecs/features/default_pre.prf:
@@ -639,13 +652,12 @@ compiler_clean:
 ####### Compile
 
 main.o: ../Lab1/main.cpp ../Lab1/algorithm.h \
-		../Lab1/bubble.cpp \
 		../Lab1/bubble.h \
 		../Lab1/sortalgo.h \
 		../Lab1/tree.cpp \
 		../Lab1/tree.h \
-		../Lab1/insertion.cpp \
-		../Lab1/merge.cpp \
+		../Lab1/insertion.h \
+		../Lab1/merge.h \
 		../Lab1/sort.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Lab1/main.cpp
 
@@ -655,6 +667,19 @@ sort.o: ../Lab1/sort.cpp ../Lab1/sort.h \
 		../Lab1/tree.cpp \
 		../Lab1/tree.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o sort.o ../Lab1/sort.cpp
+
+bubble.o: ../Lab1/bubble.cpp ../Lab1/bubble.h \
+		../Lab1/sortalgo.h \
+		../Lab1/algorithm.h \
+		../Lab1/tree.cpp \
+		../Lab1/tree.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o bubble.o ../Lab1/bubble.cpp
+
+merge.o: ../Lab1/merge.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o merge.o ../Lab1/merge.cpp
+
+insertion.o: ../Lab1/insertion.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o insertion.o ../Lab1/insertion.cpp
 
 sortalgo.o: ../Lab1/sortalgo.cpp ../Lab1/sortalgo.h \
 		../Lab1/algorithm.h \

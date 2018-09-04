@@ -8,7 +8,6 @@ SOURCES += main.cpp \
     bubble.cpp \
     merge.cpp \
     insertion.cpp \
-    sortalgo.cpp \
     tree.cpp
 
 HEADERS += \
@@ -18,4 +17,5 @@ HEADERS += \
     merge.h \
     insertion.h \
     sortalgo.h \
-    tree.h
+    tree.h \
+    filegenerator.h

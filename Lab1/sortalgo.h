@@ -37,18 +37,59 @@ public:
     */
 
     template<typename T>
-    void BinaryTree(vector<T> &data);
-    template<typename T>
-    void BinaryTreeSort(vector<T> &data, int index);
+    void BinaryTree(vector<T> &data)
+    {
+        SortAlgo::BinaryTreeSort(data, data.size());
+    }
 
     template<typename T>
-    static void Bubble(vector<T> &data);
+    void BinaryTreeSort(vector<T> &data, int index)
+    {
+        struct Tree::Node * root = 0;
+        root = Tree::InsertNode(root, data[0]);
+
+        for(int i = 1; i < index; i++)
+        {
+            Tree::InsertNode(root, data[i]);
+        }
+
+
+        int i = 0;
+        Tree::CopySortedTree(root, data, i);
+
+    }
+
+    //templated Bubble Sort Function
+    template<typename T>
+    static void Bubble(vector<T> &data)
+    {
+        T i, j, temp;
+        int size = data.size();
+        for (i = 0; i < size-1; i++)
+        {
+            for (j = 0; j < size-i-1; j++)
+            {
+                if (data[j] > data[j+1])
+                {
+                    temp = data[j];
+                    data[j] = data[j+1];
+                    data[j+1] = temp;
+                }
+            }
+        }
+    }
 
     template<typename T>
-    static void Insertion(vector<T> &data);
+    static void Insertion(vector<T> &data)
+    {
+
+    }
 
     template<typename T>
-    static void Merge(vector<T> &data);
+    static void Merge(vector<T> &data)
+    {
+
+    }
 };
 
 #endif // SORTALGO_H

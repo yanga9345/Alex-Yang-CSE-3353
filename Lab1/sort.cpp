@@ -6,7 +6,7 @@ Sort::Sort()
 {
     //for(int i = 0; i < 3; i++)
     //    algorithms.push_back(SortAlgo.algorithms[i]);
-    //algorithms.push_back();
+    algorithms.push_back(SortAlgo::Bubble);
 }
 
 //Sort::algorithms
@@ -29,7 +29,12 @@ void Sort::Load(char* dat)
 
 void Sort::Select(int id)
 {
-    activeAlgo = algorithms[id];
+    if(id < algorithms.size() && id >= 0)
+        activeAlgo = algorithms[id];
+    else
+    {
+        cout << "Error! Cannot select that algorithm!";
+    }
 }
 
 void Sort::Exe()
@@ -43,11 +48,12 @@ void Sort::Display()
     {
         cout << intData[i] << " ";
     }
+    cout << endl;
 }
 
 void Sort::Stats()
 {
-
+    cout << "" << endl;
 }
 
 

@@ -1,7 +1,7 @@
 #ifndef MERGE_H
 #define MERGE_H
 
-class Insertion
+class Merge
 {
 private:
 
