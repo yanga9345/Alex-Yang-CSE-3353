@@ -1,5 +1,6 @@
 #ifndef ALGORITHM_H
 #define ALGORITHM_H
+#include <string>
 #include <vector>
 
 class Algorithm

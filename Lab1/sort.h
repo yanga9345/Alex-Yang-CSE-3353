@@ -12,11 +12,11 @@ class Sort: public Algorithm
 private:
     void(*activeAlgo)(vector<int>&) = NULL;
     vector<void(*)(vector<int>&)> algorithms;
+    double runTime;
     //vector<int> intData;
 public:
     Sort();
     vector<int> intData;
-    //void Load(vector<int> &dat);
     void Load(char*);
     void Select(int id);
     void Execute();

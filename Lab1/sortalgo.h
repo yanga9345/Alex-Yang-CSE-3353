@@ -2,8 +2,10 @@
 #define SORTALGO_H
 #include <vector>
 #include <iostream>
-#include "algorithm.h"
-#include "tree.cpp"
+#include "tree.h"
+#include "bubble.h"
+#include "insertion.h"
+#include "merge.h"
 
 using namespace std;
 
