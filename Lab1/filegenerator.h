@@ -19,7 +19,7 @@ public:
 
     }
 
-    //generates a file with random ints (40& unique numbers)
+    //generates a file with random ints
     //size = number of integers to be sorted
     void GenerateRandom(int size)
     {
@@ -28,7 +28,7 @@ public:
         ofstream outFile(filename);
         for(int i = 0; i < size; i++)
         {
-            outFile << rand()%(size * 4 / 10) + 1 << endl;
+            outFile << rand()%(size) + 1 << endl;
         }
 
         outFile.close();
