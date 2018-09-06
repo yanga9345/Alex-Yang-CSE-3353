@@ -4,12 +4,10 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    sort.cpp \
-    tree.cpp
+    sort.cpp
 
 HEADERS += \
     algorithm.h \
     sort.h \
     sortalgo.h \
-    tree.h \
     filegenerator.h

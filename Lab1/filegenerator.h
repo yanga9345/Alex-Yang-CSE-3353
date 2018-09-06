@@ -5,22 +5,24 @@
 #include <string>
 #include <vector>
 
-//will generate all the files I need
+//will generate all the initial data sets to be sorted
 class FileGenerator
 {
 private:
-    //Random rand = new Random();
+    //keeps track of the names of all the files
     std::vector<std::string> fileNames;
 
 public:
+    //constructor
     FileGenerator()
     {
 
     }
 
+    //generates a file with random ints (40& unique numbers)
+    //size = number of integers to be sorted
     void GenerateRandom(int size)
     {
-        //const char* name = "Random - " + size;
         std::string filename = "Random - " + to_string(size);
         fileNames.push_back(filename);
         ofstream outFile(filename);
@@ -32,6 +34,7 @@ public:
         outFile.close();
     }
 
+    //generates a file with integers in reverse order
     void GenerateReverse(int size)
     {
         std::string filename = "ReverseSorted - " + to_string(size);
@@ -44,6 +47,7 @@ public:
         outFile.close();
     }
 
+    //generates a file with random ints (20& unique numbers)
     void Generate20Unique(int size)
     {
         std::string filename = "20% Unique - " + to_string(size);
@@ -56,6 +60,7 @@ public:
         outFile.close();
     }
 
+    //generates a file where the first 70% is in order and the last 30% is randomized
     void Generate30Random(int size)
     {
         std::string filename = "30% Randomized - " + to_string(size);
@@ -85,6 +90,7 @@ public:
             }
     }
 
+    //returns a vector with the names of all the files
     std::vector<std::string> getFileNames()
     {
         return fileNames;

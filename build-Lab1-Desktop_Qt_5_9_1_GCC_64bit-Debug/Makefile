@@ -51,11 +51,9 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../Lab1/main.cpp \
-		../Lab1/sort.cpp \
-		../Lab1/tree.cpp 
+		../Lab1/sort.cpp 
 OBJECTS       = main.o \
-		sort.o \
-		tree.o
+		sort.o
 DIST          = ../../Qt/5.9.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../../Qt/5.9.1/gcc_64/mkspecs/common/unix.conf \
 		../../Qt/5.9.1/gcc_64/mkspecs/common/linux.conf \
@@ -232,10 +230,8 @@ DIST          = ../../Qt/5.9.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../Lab1/Lab1.pro algorithm.h \
 		sort.h \
 		sortalgo.h \
-		tree.h \
 		filegenerator.h ../Lab1/main.cpp \
-		../Lab1/sort.cpp \
-		../Lab1/tree.cpp
+		../Lab1/sort.cpp
 QMAKE_TARGET  = Lab1
 DESTDIR       = 
 TARGET        = Lab1
@@ -642,18 +638,13 @@ compiler_clean:
 main.o: ../Lab1/main.cpp ../Lab1/algorithm.h \
 		../Lab1/sort.h \
 		../Lab1/sortalgo.h \
-		../Lab1/tree.h \
 		../Lab1/filegenerator.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Lab1/main.cpp
 
 sort.o: ../Lab1/sort.cpp ../Lab1/sort.h \
 		../Lab1/sortalgo.h \
-		../Lab1/tree.h \
 		../Lab1/algorithm.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o sort.o ../Lab1/sort.cpp
-
-tree.o: ../Lab1/tree.cpp ../Lab1/tree.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tree.o ../Lab1/tree.cpp
 
 ####### Install
 

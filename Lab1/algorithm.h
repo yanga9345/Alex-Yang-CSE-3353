@@ -3,13 +3,11 @@
 #include <string>
 #include <vector>
 
+//Algorithm base class
 class Algorithm
 {
-private:
-    //std::vector<int> intData;
 public:
-    //std::vector<int> algorithmList;
-    //int Last;
+    //pure virtual functions to be defined in Sort
     virtual void Load(char*) = 0;
     virtual void Select(int id) = 0;
     virtual void Execute() = 0;

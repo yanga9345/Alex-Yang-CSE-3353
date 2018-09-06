@@ -2,38 +2,16 @@
 #define SORTALGO_H
 #include <vector>
 #include <iostream>
-#include "tree.h"
 
 using namespace std;
+//the reason my static sort algorithms return strings is because I want
+//the names of the sorting method to be used in Sort (sortName)
 
 //templated SortAlgo class containing all the algorithms (no .cpp)
 class SortAlgo
 {
 public:
     SortAlgo();
-
-    template<typename T>
-    void BinaryTree(vector<T> &data)
-    {
-        SortAlgo::BinaryTreeSort(data, data.size());
-    }
-
-    template<typename T>
-    void BinaryTreeSort(vector<T> &data, int index)
-    {
-        struct Tree::Node * root = 0;
-        root = Tree::InsertNode(root, data[0]);
-
-        for(int i = 1; i < index; i++)
-        {
-            Tree::InsertNode(root, data[i]);
-        }
-
-
-        int i = 0;
-        Tree::CopySortedTree(root, data, i);
-
-    }
 
     //templated Bubble Sort Function
     template<typename T>
