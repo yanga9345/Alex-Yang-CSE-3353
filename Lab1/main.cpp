@@ -21,30 +21,36 @@
 using namespace std;
 
 //runs the whole program
-int main(int argc, char** argv)
+int main()
 {
-    enum AlgorithmType
-    {
-        BUBBLE = 0,
-        INSERTION = 1,
-        MERGE = 2,
-        LAST
-    };
-    //AlgorithmType algorithmtype;
+    auto start = std::chrono::high_resolution_clock::now();
+    FileGenerator f;
+    f.Run();
+
+    vector<string> filenames;
+
+    filenames = f.getFileNames();
 
     Sort algo;
 
-    for(int i = 0; i < 3; i++)
+    for(string f: filenames)
     {
-        algo.Load(argv[1]);
-        algo.Select(i);
-        algo.Execute();
-        algo.Display();
-        //algo.Stats();
-        //algo.Save();
+        algo.Load((char*)f.c_str());
+        for(int i = 0; i < 3; i++)
+        {
+            algo.Select(i);
+            algo.Execute();
+            //algo.Display();
+            algo.Stats();
+            algo.Save();
+        }
     }
+    //algo.Save();
 
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+
+    cout << "Total Time Elapsed: " << setprecision(3) <<
+            elapsed.count() << " seconds " << endl;
     return 0;
 }
-
-

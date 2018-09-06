@@ -37,7 +37,7 @@ public:
 
     //templated Bubble Sort Function
     template<typename T>
-    static void BubbleSort(vector<T> &data)
+    static string BubbleSort(vector<T> &data)
     {
         T i, j, temp;
         int size = data.size();
@@ -49,11 +49,12 @@ public:
                     data[j] = data[j+1];
                     data[j+1] = temp;
                 }
+        return "Bubble Sort";
     }
 
     //templated Insertion Sort Function
     template<typename T>
-    static void InsertionSort(vector<T> &data)
+    static string InsertionSort(vector<T> &data)
     {
         T key;
         int i, j, size = data.size();
@@ -70,13 +71,15 @@ public:
 
             data[j+1] = key;
         }
+        return "Insertion Sort";
     }
 
     //templated Merge Sort Function
     template<typename T>
-    static void MergeSort(vector<T> &data)
+    static string MergeSort(vector<T> &data)
     {
         recursiveMerge(data, 0, data.size() - 1);
+        return "Merge Sort";
     }
 
     //Merge method for Merge Sort
@@ -155,6 +158,7 @@ public:
             Merge(data, left, right, middle);
         }
     }
+
 };
 
 #endif // SORTALGO_H

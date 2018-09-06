@@ -11,15 +11,13 @@ Sort::Sort()
     algorithms.push_back(SortAlgo::MergeSort);
 }
 
-//Sort::algorithms
-//void Sort::Load(vector<int> &dat)
 void Sort::Load(char* dat)
 {
+    filename = dat;
     intData = {};
     ifstream inFile(dat);
     char * c_string = new char[800];
     int num = 0;
-    //char * temp = new char[800];
     while(inFile.good())
     {
         inFile.getline(c_string, 50);
@@ -42,12 +40,10 @@ void Sort::Select(int id)
 void Sort::Execute()
 {
     auto start = std::chrono::high_resolution_clock::now();
-    activeAlgo(intData);
+    sortName = activeAlgo(intData);
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;
     runTime = elapsed.count();
-    //cout << "RunTime: " << setprecision(3) << elapsed.count() <<
-    //        " seconds " << endl;
 }
 
 void Sort::Display()
@@ -61,11 +57,20 @@ void Sort::Display()
 
 void Sort::Stats()
 {
-    cout << "" << endl;
+    cout << "File: " << filename << endl;
+    //cout << sortName << ": " << filename << endl;
+    cout << sortName << endl;
+    cout << "Run Time: " << setprecision(3) << runTime  << " seconds " << endl;
+    cout << endl;
 }
 
 
 void Sort::Save()
 {
-
+    ofstream outFile(filename + " SORTED");
+    for(unsigned int i = 0; i < intData.size(); i++)
+    {
+        outFile << intData[i] << endl;
+    }
+    outFile.close();
 }
