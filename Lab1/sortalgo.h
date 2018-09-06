@@ -68,23 +68,23 @@ public:
         int temp1size = middle - left + 1;
         int temp2size = right - middle;
 
-        //temp vectors
-        vector<T> temp1 = {};
-        vector<T> temp2 = {};
+        //temp arrays
+        T temp1[temp1size];
+        T temp2[temp2size];
 
-        //splits data into the two temp vectors
+        //splits data into the two temp arrays
         for (i = 0; i < temp1size; i++)
-            temp1.push_back(data[left + i]);
+            temp1[i] = data[left + i];
         for (j = 0; j < temp2size; j++)
-            temp2.push_back(data[middle + 1 + j]);
+            temp2[j] = data[middle + 1 + j];
 
-        /*merges the temp vectors into one vector*/
+        /*merges the temp arrays into one array*/
 
-        //starting index of first vector
+        //starting index of first array
         i = 0;
-        //starting index of second vector
+        //starting index of second array
         j = 0;
-        //starting index of merged vector
+        //starting index of merged array
         k = left;
 
         while (i < temp1size && j < temp2size)
@@ -102,7 +102,7 @@ public:
             k++;
         }
 
-        //Copies any elements left in the temp1 vector
+        //Copies any elements left in the temp1 array
         while (i < temp1size)
         {
             data[k] = temp1[i];
@@ -110,7 +110,7 @@ public:
             k++;
         }
 
-        //Copies any elements left in the temp2 vector
+        //Copies any elements left in the temp2 array
         while (j < temp2size)
         {
             data[k] = temp2[j];
@@ -125,7 +125,6 @@ public:
     {
         if (left < right)
         {
-            //int middle = left + (right - left) / 2;
             int middle = (left + right)/2;
 
             //sorts both halves of the vector

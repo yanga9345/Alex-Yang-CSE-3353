@@ -47,7 +47,7 @@ int main()
             algo.Execute();
             //algo.Display(); //uncomment this to print the sorted numbers
             algo.Stats();
-            //algo.Save();
+            algo.Save();
         }
     }
 
