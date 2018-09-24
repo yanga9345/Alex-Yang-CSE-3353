@@ -4,12 +4,11 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    search.cpp \
-    graph.cpp
+    algofactory.cpp \
+    sort.cpp
 
 HEADERS += \
-    searchalgo.h \
+    algofactory.h \
     algorithm.h \
-    search.h \
-    avltree.h \
-    graph.h
+    sort.h \
+    sortalgo.h

@@ -11,9 +11,9 @@
 
 #include <iostream>
 #include <fstream>
-#include "algorithm.h"
+#include "search.h"
 #include "searchalgo.h"
-#include "filegenerator.h"
+#include "graph.h"
 
 using namespace std;
 

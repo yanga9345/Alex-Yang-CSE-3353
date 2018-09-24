@@ -1,16 +1,57 @@
-#include "algorithm.h"
+#include "sort.h"
 
-Algorithm::Algorithm()
+void Sort::setExecutionType(Sort::Configuration exe)
 {
-    /*
-    algorithms.push_back(SearchAlgo::BubbleSort);
-    algorithms.push_back(SearchAlgo::InsertionSort);
-    algorithms.push_back(SearchAlgo::MergeSort);
-    */
+    executionType = exe;
+}
+
+void Sort::setStorageType(Sort::Configuration stg)
+{
+    storageType = stg;
+}
+
+void Sort::getConfiguration()
+{
+    if(executionType == Sort::Configuration::ITERATIVE)
+    {
+        std::cout << "Iterative Execution";
+    }
+    else
+        std::cout << "Recursive Execution";
+
+    if(storageType == Sort::Configuration::LIST)
+    {
+        std::cout << ", with Adjacency List" << std::endl;
+    }
+
+}
+
+Sort::Sort(const Sort & srt)
+{
+    executionType = srt.executionType;
+    storageType = srt.storageType;
+    activeAlgo = srt.activeAlgo;
+}
+
+Algorithm * Sort::Clone()
+{
+
+    return new Sort(*this);
+}
+
+
+
+
+
+Sort::Sort()
+{
+    algorithms.push_back(SortAlgo::BubbleSort);
+    algorithms.push_back(SortAlgo::InsertionSort);
+    algorithms.push_back(SortAlgo::MergeSort);
 }
 
 //loads data file into Sort
-void Algorithm::Load(char* dat)
+void Sort::Load(char* dat)
 {
     filename = dat;
     intData = {};
@@ -27,7 +68,7 @@ void Algorithm::Load(char* dat)
 }
 
 //selects the sorting method (Bubble, Insertion, Merge)
-void Algorithm::Select(int id)
+void Sort::Select(int id)
 {
     if(id < int(algorithms.size()) && id >= 0)
         activeAlgo = algorithms[id];
@@ -38,7 +79,7 @@ void Algorithm::Select(int id)
 }
 
 //executes the selected method
-void Algorithm::Execute()
+void Sort::Execute()
 {
     auto start = std::chrono::high_resolution_clock::now();
     sortName = activeAlgo(intData);
@@ -48,7 +89,7 @@ void Algorithm::Execute()
 }
 
 //prints the sorted vector
-void Algorithm::Display()
+void Sort::Display()
 {
     for(unsigned int i = 0; i < intData.size(); i++)
     {
@@ -58,7 +99,7 @@ void Algorithm::Display()
 }
 
 //displays the file, sorting method used, and time it took to run
-void Algorithm::Stats()
+void Sort::Stats()
 {
     cout << "File: " << filename << endl;
     cout << sortName << endl;
@@ -67,7 +108,7 @@ void Algorithm::Stats()
 }
 
 //outputs sorted vectors to text files
-void Algorithm::Save()
+void Sort::Save()
 {
     ofstream outFile(filename + " SORTED");
     for(unsigned int i = 0; i < intData.size(); i++)
@@ -76,3 +117,5 @@ void Algorithm::Save()
     }
     outFile.close();
 }
+
+

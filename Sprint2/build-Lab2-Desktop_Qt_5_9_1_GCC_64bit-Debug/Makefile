@@ -51,9 +51,11 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../Lab2/main.cpp \
-		../Lab2/algorithm.cpp 
+		../Lab2/search.cpp \
+		../Lab2/graph.cpp 
 OBJECTS       = main.o \
-		algorithm.o
+		search.o \
+		graph.o
 DIST          = ../../../Qt/5.9.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.9.1/gcc_64/mkspecs/common/unix.conf \
 		../../../Qt/5.9.1/gcc_64/mkspecs/common/linux.conf \
@@ -227,11 +229,13 @@ DIST          = ../../../Qt/5.9.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.9.1/gcc_64/mkspecs/features/exceptions.prf \
 		../../../Qt/5.9.1/gcc_64/mkspecs/features/yacc.prf \
 		../../../Qt/5.9.1/gcc_64/mkspecs/features/lex.prf \
-		../Lab2/Lab2.pro filegenerator.h \
+		../Lab2/Lab2.pro searchalgo.h \
 		algorithm.h \
-		searchalgo.h \
-		node.h ../Lab2/main.cpp \
-		../Lab2/algorithm.cpp
+		search.h \
+		avltree.h \
+		graph.h ../Lab2/main.cpp \
+		../Lab2/search.cpp \
+		../Lab2/graph.cpp
 QMAKE_TARGET  = Lab2
 DESTDIR       = 
 TARGET        = Lab2
@@ -635,14 +639,18 @@ compiler_clean:
 
 ####### Compile
 
-main.o: ../Lab2/main.cpp ../Lab2/algorithm.h \
-		../Lab2/searchalgo.h \
-		../Lab2/filegenerator.h
+main.o: ../Lab2/main.cpp ../Lab2/search.h \
+		../Lab2/algorithm.h \
+		../Lab2/searchalgo.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Lab2/main.cpp
 
-algorithm.o: ../Lab2/algorithm.cpp ../Lab2/algorithm.h \
+search.o: ../Lab2/search.cpp ../Lab2/search.h \
+		../Lab2/algorithm.h \
 		../Lab2/searchalgo.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o algorithm.o ../Lab2/algorithm.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o search.o ../Lab2/search.cpp
+
+graph.o: ../Lab2/graph.cpp ../Lab2/graph.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o graph.o ../Lab2/graph.cpp
 
 ####### Install
 

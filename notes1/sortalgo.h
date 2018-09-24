@@ -1,5 +1,5 @@
-#ifndef SEARCHALGO_H
-#define SEARCHALGO_H
+#ifndef SORTALGO_H
+#define SORTALGO_H
 #include <vector>
 #include <iostream>
 
@@ -8,53 +8,11 @@ using namespace std;
 //the names of the sorting method to be used in Sort (sortName)
 
 //templated SortAlgo class containing all the algorithms (no .cpp)
-#include <iostream>
-#include <list>
-#include <graph.h>
-
-class SearchAlgo
+class SortAlgo
 {
 public:
-    SearchAlgo();
+    SortAlgo();
 
-    static string DFSIterative(int source, int dest)
-    {
-
-        return "DFS Iterative";
-    }
-
-
-    void DFSUtil(int v, bool visited[])
-    {
-
-    }
-
-    // The function to do DFS traversal. It uses recursive DFSUtil()
-    static string DFSRecursive(int source, int dest)
-    {
-        return "DFS Recursive";
-    }
-
-    static string BFSIterative(int source, int dest)
-    {
-        return "BFS Iterative";
-    }
-
-    static string BFSRecursive(int source, int dest)
-    {
-        return "BFS Recursive";
-    }
-
-    static string Dijkstra(int source, int dest)
-    {
-        return "Dijkstra";
-    }
-
-    static string AStar(int source, int dest)
-    {
-        return "A*";
-    }
-    /**
     //templated Bubble Sort Function
     template<typename T>
     static string BubbleSort(vector<T> &data)
@@ -120,7 +78,7 @@ public:
         for (j = 0; j < temp2size; j++)
             temp2[j] = data[middle + 1 + j];
 
-        //merges the temp arrays into one array
+        /*merges the temp arrays into one array*/
 
         //starting index of first array
         i = 0;
@@ -177,8 +135,7 @@ public:
             Merge(data, left, right, middle);
         }
     }
-    **/
 
 };
 
-#endif // SEATCHALGO_H
+#endif // SORTALGO_H

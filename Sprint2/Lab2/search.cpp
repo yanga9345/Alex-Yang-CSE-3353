@@ -1,15 +1,23 @@
-#include "sort.h"
+#include "search.h"
 
-Sort::Sort()
+Search::Search()
 {
-    algorithms.push_back(SortAlgo::BubbleSort);
-    algorithms.push_back(SortAlgo::InsertionSort);
-    algorithms.push_back(SortAlgo::MergeSort);
-    tests.push_back(SortAlgo::test);
+
+//    algorithms.push_back(SearchAlgo::BubbleSort);
+//    algorithms.push_back(SearchAlgo::InsertionSort);
+//    algorithms.push_back(SearchAlgo::MergeSort);
+
+    algorithms.push_back(SearchAlgo::DFSIterative);
+    algorithms.push_back(SearchAlgo::DFSRecursive);
+    algorithms.push_back(SearchAlgo::BFSIterative);
+    algorithms.push_back(SearchAlgo::BFSRecursive);
+    algorithms.push_back(SearchAlgo::Dijkstra);
+    algorithms.push_back(SearchAlgo::AStar);
+
 }
 
 //loads data file into Sort
-void Sort::Load(char* dat)
+void Search::Load(char* dat)
 {
     filename = dat;
     intData = {};
@@ -25,11 +33,19 @@ void Sort::Load(char* dat)
     inFile.close();
 }
 
+void Search::Load(Graph g)
+{
+
+}
+
 //selects the sorting method (Bubble, Insertion, Merge)
-void Sort::Select(int id)
+void Search::Select(int id)
 {
     if(id < int(algorithms.size()) && id >= 0)
+    {
         activeAlgo = algorithms[id];
+        //activeAlgo = SearchAlgo::BFSIterative;
+    }
     else
     {
         cout << "Error! Cannot select that algorithm!";
@@ -37,17 +53,17 @@ void Sort::Select(int id)
 }
 
 //executes the selected method
-void Sort::Execute()
+void Search::Execute()
 {
     auto start = std::chrono::high_resolution_clock::now();
-    sortName = activeAlgo(intData);
+    sortName = activeAlgo(source, dest);
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;
     runTime = elapsed.count();
 }
 
 //prints the sorted vector
-void Sort::Display()
+void Search::Display()
 {
     for(unsigned int i = 0; i < intData.size(); i++)
     {
@@ -57,7 +73,7 @@ void Sort::Display()
 }
 
 //displays the file, sorting method used, and time it took to run
-void Sort::Stats()
+void Search::Stats()
 {
     cout << "File: " << filename << endl;
     cout << sortName << endl;
@@ -66,7 +82,7 @@ void Sort::Stats()
 }
 
 //outputs sorted vectors to text files
-void Sort::Save()
+void Search::Save()
 {
     ofstream outFile(filename + " SORTED");
     for(unsigned int i = 0; i < intData.size(); i++)

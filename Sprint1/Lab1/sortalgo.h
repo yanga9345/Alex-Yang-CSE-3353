@@ -30,6 +30,11 @@ public:
         return "Bubble Sort";
     }
 
+    static string test(int a, int b)
+    {
+        return "test done";
+    }
+
     //templated Insertion Sort Function
     template<typename T>
     static string InsertionSort(vector<T> &data)
