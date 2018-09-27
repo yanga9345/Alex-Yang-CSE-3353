@@ -52,10 +52,14 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../Lab2/main.cpp \
 		../Lab2/search.cpp \
-		../Lab2/graph.cpp 
+		../Lab2/graph.cpp \
+		../Lab2/dest.cpp \
+		../Lab2/source.cpp 
 OBJECTS       = main.o \
 		search.o \
-		graph.o
+		graph.o \
+		dest.o \
+		source.o
 DIST          = ../../../Qt/5.9.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.9.1/gcc_64/mkspecs/common/unix.conf \
 		../../../Qt/5.9.1/gcc_64/mkspecs/common/linux.conf \
@@ -233,9 +237,18 @@ DIST          = ../../../Qt/5.9.1/gcc_64/mkspecs/features/spec_pre.prf \
 		algorithm.h \
 		search.h \
 		avltree.h \
-		graph.h ../Lab2/main.cpp \
+		graph.h \
+		source.h \
+		dest.h \
+		adjacencylist.h \
+		stack.h \
+		node.h \
+		dlinkedlist.h \
+		dfsrecursive.h ../Lab2/main.cpp \
 		../Lab2/search.cpp \
-		../Lab2/graph.cpp
+		../Lab2/graph.cpp \
+		../Lab2/dest.cpp \
+		../Lab2/source.cpp
 QMAKE_TARGET  = Lab2
 DESTDIR       = 
 TARGET        = Lab2
@@ -641,16 +654,42 @@ compiler_clean:
 
 main.o: ../Lab2/main.cpp ../Lab2/search.h \
 		../Lab2/algorithm.h \
-		../Lab2/searchalgo.h
+		../Lab2/searchalgo.h \
+		../Lab2/graph.h \
+		../Lab2/source.h \
+		../Lab2/dlinkedlist.h \
+		../Lab2/node.h \
+		../Lab2/dest.h \
+		../Lab2/stack.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Lab2/main.cpp
 
 search.o: ../Lab2/search.cpp ../Lab2/search.h \
 		../Lab2/algorithm.h \
-		../Lab2/searchalgo.h
+		../Lab2/searchalgo.h \
+		../Lab2/graph.h \
+		../Lab2/source.h \
+		../Lab2/dlinkedlist.h \
+		../Lab2/node.h \
+		../Lab2/dest.h \
+		../Lab2/stack.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o search.o ../Lab2/search.cpp
 
-graph.o: ../Lab2/graph.cpp ../Lab2/graph.h
+graph.o: ../Lab2/graph.cpp ../Lab2/graph.h \
+		../Lab2/source.h \
+		../Lab2/dlinkedlist.h \
+		../Lab2/node.h \
+		../Lab2/dest.h \
+		../Lab2/stack.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o graph.o ../Lab2/graph.cpp
+
+dest.o: ../Lab2/dest.cpp ../Lab2/dest.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dest.o ../Lab2/dest.cpp
+
+source.o: ../Lab2/source.cpp ../Lab2/source.h \
+		../Lab2/dlinkedlist.h \
+		../Lab2/node.h \
+		../Lab2/dest.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o source.o ../Lab2/source.cpp
 
 ####### Install
 

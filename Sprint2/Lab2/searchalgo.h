@@ -17,43 +17,43 @@ class SearchAlgo
 public:
     SearchAlgo();
 
-    static string DFSIterative(int source, int dest)
-    {
+//    static string DFSIterative(int source, int dest)
+//    {
 
-        return "DFS Iterative";
-    }
+//        return "DFS Iterative";
+//    }
 
 
-    void DFSUtil(int v, bool visited[])
-    {
+//    void DFSUtil(int v, bool visited[])
+//    {
 
-    }
+//    }
 
-    // The function to do DFS traversal. It uses recursive DFSUtil()
-    static string DFSRecursive(int source, int dest)
-    {
-        return "DFS Recursive";
-    }
+//    // The function to do DFS traversal. It uses recursive DFSUtil()
+//    static string DFSRecursive(int source, int dest)
+//    {
+//        return "DFS Recursive";
+//    }
 
-    static string BFSIterative(int source, int dest)
-    {
-        return "BFS Iterative";
-    }
+//    static string BFSIterative(int source, int dest)
+//    {
+//        return "BFS Iterative";
+//    }
 
-    static string BFSRecursive(int source, int dest)
-    {
-        return "BFS Recursive";
-    }
+//    static string BFSRecursive(int source, int dest)
+//    {
+//        return "BFS Recursive";
+//    }
 
-    static string Dijkstra(int source, int dest)
-    {
-        return "Dijkstra";
-    }
+//    static string Dijkstra(int source, int dest)
+//    {
+//        return "Dijkstra";
+//    }
 
-    static string AStar(int source, int dest)
-    {
-        return "A*";
-    }
+//    static string AStar(int source, int dest)
+//    {
+//        return "A*";
+//    }
     /**
     //templated Bubble Sort Function
     template<typename T>

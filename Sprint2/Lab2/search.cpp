@@ -7,12 +7,12 @@ Search::Search()
 //    algorithms.push_back(SearchAlgo::InsertionSort);
 //    algorithms.push_back(SearchAlgo::MergeSort);
 
-    algorithms.push_back(SearchAlgo::DFSIterative);
-    algorithms.push_back(SearchAlgo::DFSRecursive);
-    algorithms.push_back(SearchAlgo::BFSIterative);
-    algorithms.push_back(SearchAlgo::BFSRecursive);
-    algorithms.push_back(SearchAlgo::Dijkstra);
-    algorithms.push_back(SearchAlgo::AStar);
+//    algorithms.push_back(SearchAlgo::DFSIterative);
+//    algorithms.push_back(SearchAlgo::DFSRecursive);
+//    algorithms.push_back(SearchAlgo::BFSIterative);
+//    algorithms.push_back(SearchAlgo::BFSRecursive);
+//    algorithms.push_back(SearchAlgo::Dijkstra);
+//    algorithms.push_back(SearchAlgo::AStar);
 
 }
 
@@ -33,9 +33,48 @@ void Search::Load(char* dat)
     inFile.close();
 }
 
-void Search::Load(Graph g)
+void Search::Load(char ** argv)
 {
+    char c;
+    std::string temp;
+    int input, loop = 0;
+    int v, e;
 
+    ifstream graphFile("graph.txt");
+    ifstream weightsFile("weights.txt");
+    ifstream positionsFile("positions.txt");
+
+    while(graphFile)
+    {
+        graphFile >> c;
+        if(c == ',')
+        {
+            loop++;
+            if(loop == 1)
+            {
+                v = stoi(temp);
+                graph.addVertices(v);
+            }
+            else
+            {
+                e = stoi(temp);
+                graph.addEdge(v, e);
+            }
+            temp = "";
+        }
+        else if(c == '\n')
+        {
+            loop = 0;
+        }
+        else
+        {
+            temp += c;
+        }
+    }
+
+    graphFile.close();
+    weightsFile.close();
+    positionsFile.close();
 }
 
 //selects the sorting method (Bubble, Insertion, Merge)

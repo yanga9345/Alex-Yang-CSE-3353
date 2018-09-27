@@ -5,11 +5,20 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     search.cpp \
-    graph.cpp
+    graph.cpp \
+    dest.cpp \
+    source.cpp
 
 HEADERS += \
     searchalgo.h \
     algorithm.h \
     search.h \
     avltree.h \
-    graph.h
+    graph.h \
+    source.h \
+    dest.h \
+    adjacencylist.h \
+    stack.h \
+    node.h \
+    dlinkedlist.h \
+    dfsrecursive.h

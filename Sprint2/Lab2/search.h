@@ -27,8 +27,9 @@ public:
     Search();
     int source, dest;
     vector<int> intData; //vector of ints read from file
-    void Load(char*); //loads data file into Sort
-    void Load(Graph);
+    Graph graph;
+    void Load(char*); //loads data file into Search
+    void Load(char **);
     void Select(int); //selects the sorting method
     void Execute(); //executes the selected method
     void Display(); //prints the sorted vector

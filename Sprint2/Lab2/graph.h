@@ -2,17 +2,29 @@
 #define GRAPH_H
 #include <iostream>
 #include <list>
+#include <vector>
+#include "source.h"
+#include "stack.h"
+#include "dlinkedlist.h"
 
 class Graph
 {
-    int vCount;
-    std::list<int> *adjacencyList;
+    int vCount, edgeCount;
+    //std::list<Source> *adjacencyList;
+    std::vector<int> vertices;
+    std::vector<int> edges;
+    //std::vector<int> weights;
+    Stack<int> stack;
+
     void DFSUtil(int v, bool visited[]);
 public:
+    Graph();
     Graph(int V);   // Constructor
-    void addEdge(int vertices, int w);   // function to add an edge to graph
+    void addVertices(int);
+    void addEdge(int, int);   // function to add a weighted edge to graph
     void DFS();    // prints DFS traversal of the complete graph
 private:
+
 
 };
 

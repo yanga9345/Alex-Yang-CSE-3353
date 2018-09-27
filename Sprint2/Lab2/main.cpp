@@ -14,19 +14,25 @@
 #include "search.h"
 #include "searchalgo.h"
 #include "graph.h"
+#include "source.h"
 
 using namespace std;
 
 //runs the whole program
 int main(int argc, char** argv)
 {
-    if(argc == 1)
+    Graph g;
+    if(argc == 2)
     {
 
     }
-    else if(argc == 2)
+    else if(argc == 3)
     {
-
+        std::cout << "Hello World. " << endl;
+        Search algo;
+        algo.Load(argv);
+        //algo.Select(0);
+        //algo.Execute();
     }
     else
         cout << "Error. Invalid number of command line arguments." << endl;
