@@ -8,7 +8,7 @@ Search::Search()
 //    algorithms.push_back(SearchAlgo::MergeSort);
 
 //    algorithms.push_back(SearchAlgo::DFSIterative);
-//    algorithms.push_back(SearchAlgo::DFSRecursive);
+      algorithms.push_back(SearchAlgo::DFSRecursive);
 //    algorithms.push_back(SearchAlgo::BFSIterative);
 //    algorithms.push_back(SearchAlgo::BFSRecursive);
 //    algorithms.push_back(SearchAlgo::Dijkstra);
@@ -35,43 +35,63 @@ void Search::Load(char* dat)
 
 void Search::Load(char ** argv)
 {
-    char c;
-    std::string temp;
-    int input, loop = 0;
+    source = atoi(argv[1]);
+    destination = atoi(argv[2]);
+    char *c = new char[15];
+    std::string s_num;
+    int loop = 0;
     int v, e;
+    int v1, v2, comma, start = 0;
 
     ifstream graphFile("graph.txt");
     ifstream weightsFile("weights.txt");
     ifstream positionsFile("positions.txt");
 
-    while(graphFile)
+    while(graphFile.getline(c, 15))
     {
-        graphFile >> c;
-        if(c == ',')
+        graphFile.getline(c, 15);
+        s_num = string(c);
+        size_t n = std::count(s_num.begin(), s_num.end(), ',');
+        comma = s_num.find(',');
+
+        v1 = stoi(s_num.substr(start, comma));
+    }
+
+    start = 0;
+    graph = Graph(v1);
+    Source s1;
+    dest d1;
+
+    graphFile.clear();
+    graphFile.seekg(0);
+    while(graphFile.getline(c, 15))
+    {
+        graphFile.getline(c, 15);
+        s_num = string(c);
+        size_t n = std::count(s_num.begin(), s_num.end(), ',');
+        int count = 0;
+        for(int i = 0; i < int(n) + 1; i++)
         {
-            loop++;
-            if(loop == 1)
+            comma = s_num.find(',');
+            v2 = stoi(s_num.substr(start, comma));
+            if(i == 0)
             {
-                v = stoi(temp);
-                graph.addVertices(v);
+                v1 = v2;
+                s1 = Source(v1);
+                sources.add(s1);
+                count++;
             }
             else
             {
-                e = stoi(temp);
-                graph.addEdge(v, e);
+                graph.addEdge(v1, v2);
+                d1 = dest(v2);
+                sources[count-1].addDest(d1);
             }
-            temp = "";
-        }
-        else if(c == '\n')
-        {
-            loop = 0;
-        }
-        else
-        {
-            temp += c;
+            s_num = s_num.substr(comma + 1, s_num.length()-comma);
         }
     }
 
+    delete[] c;
     graphFile.close();
     weightsFile.close();
     positionsFile.close();
@@ -95,7 +115,7 @@ void Search::Select(int id)
 void Search::Execute()
 {
     auto start = std::chrono::high_resolution_clock::now();
-    sortName = activeAlgo(source, dest);
+    sortName = activeAlgo(graph, source, destination);
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;
     runTime = elapsed.count();
@@ -104,10 +124,10 @@ void Search::Execute()
 //prints the sorted vector
 void Search::Display()
 {
-    for(unsigned int i = 0; i < intData.size(); i++)
-    {
-        cout << intData[i] << " ";
-    }
+//    for(unsigned int i = 0; i < ; i++)
+//    {
+
+//    }
     cout << endl;
 }
 

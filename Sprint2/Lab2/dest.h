@@ -15,6 +15,7 @@ private:
 public:
     //public functions
     dest();
+    dest(int);
     dest(int, int, int);
     dest& operator=(const dest&);
     //std::string getName();

@@ -30,10 +30,11 @@ public:
 //    }
 
 //    // The function to do DFS traversal. It uses recursive DFSUtil()
-//    static string DFSRecursive(int source, int dest)
-//    {
-//        return "DFS Recursive";
-//    }
+    static string DFSRecursive(Graph g, int source, int dest)
+    {
+        g.DFS(source);
+        return "DFS Recursive";
+    }
 
 //    static string BFSIterative(int source, int dest)
 //    {

@@ -21,7 +21,6 @@ using namespace std;
 //runs the whole program
 int main(int argc, char** argv)
 {
-    Graph g;
     if(argc == 2)
     {
 
@@ -31,8 +30,17 @@ int main(int argc, char** argv)
         std::cout << "Hello World. " << endl;
         Search algo;
         algo.Load(argv);
-        //algo.Select(0);
-        //algo.Execute();
+        algo.Select(0);
+        algo.Execute();
+        std::cout << "Hello Again. " << endl;
+
+//        Graph g(4);
+//        g.addEdge(0, 1);
+//        g.addEdge(0, 2);
+//        g.addEdge(1, 2);
+//        g.addEdge(2, 0);
+//        g.addEdge(2, 3);
+//        g.addEdge(3, 3);
     }
     else
         cout << "Error. Invalid number of command line arguments." << endl;

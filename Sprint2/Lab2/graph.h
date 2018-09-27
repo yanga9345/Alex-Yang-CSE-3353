@@ -1,31 +1,35 @@
 #ifndef GRAPH_H
 #define GRAPH_H
-#include <iostream>
-#include <list>
-#include <vector>
-#include "source.h"
-#include "stack.h"
+// C++ program to print DFS traversal from
+// a given vertex in a  given graph
+#include<iostream>
+#include<list>
 #include "dlinkedlist.h"
+using namespace std;
 
+// Graph class represents a directed graph
+// using adjacency list representation
 class Graph
 {
-    int vCount, edgeCount;
-    //std::list<Source> *adjacencyList;
-    std::vector<int> vertices;
-    std::vector<int> edges;
-    //std::vector<int> weights;
-    Stack<int> stack;
+    int V;    // No. of vertices
 
+    // Pointer to an array containing
+    // adjacency lists
+    DLinkedList<int> *adj;
+
+    // A recursive function used by DFS
     void DFSUtil(int v, bool visited[]);
 public:
     Graph();
     Graph(int V);   // Constructor
-    void addVertices(int);
-    void addEdge(int, int);   // function to add a weighted edge to graph
-    void DFS();    // prints DFS traversal of the complete graph
-private:
 
+    void setV(int v);
 
+    // function to add an edge to graph
+    void addEdge(int v, int w);
+
+    // DFS traversal of the vertices
+    // reachable from v
+    void DFS(int v);
 };
-
 #endif // GRAPH_H

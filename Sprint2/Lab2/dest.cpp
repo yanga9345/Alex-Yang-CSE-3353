@@ -5,6 +5,13 @@ dest::dest()
 {
 }
 
+dest::dest(int new_id)
+{
+    id = new_id;
+    cost = 0;
+    time = 0;
+}
+
 dest::dest(int new_id, int new_cost, int new_time)
 {
     id = new_id;

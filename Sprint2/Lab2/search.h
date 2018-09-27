@@ -3,11 +3,14 @@
 #include "algorithm.h"
 #include "searchalgo.h"
 #include "graph.h"
+#include "adjacencylist.h"
+#include "dlinkedlist.h"
 #include <fstream>
 #include <vector>
 #include <chrono>
 #include <iomanip>
 #include <string>
+#include <algorithm>
 
 //header file for Sort Class
 //inherits from Algorithm base class
@@ -15,9 +18,9 @@ class Search: public Algorithm
 {
 private:
     //function pointer of a function that takes in a vector of ints and returns a string (name of the type of sort [Bubble, Insertion, Merge])
-    std::string(*activeAlgo)(int, int) = NULL;
+    std::string(*activeAlgo)(Graph, int, int) = NULL;
     //vector of function pointers described above
-    std::vector<std::string(*)(int, int)> algorithms;
+    std::vector<std::string(*)(Graph, int, int)> algorithms;
     //time it takes to run a sort represented by a double
     double runTime;
     //strings for the name of the type of sort and the name of the file that is currently loaded
@@ -25,9 +28,11 @@ private:
 public:
     int currentIndex;
     Search();
-    int source, dest;
+    int source, destination;
     vector<int> intData; //vector of ints read from file
     Graph graph;
+    DLinkedList<Source> sources;
+
     void Load(char*); //loads data file into Search
     void Load(char **);
     void Select(int); //selects the sorting method

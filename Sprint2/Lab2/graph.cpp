@@ -2,33 +2,49 @@
 
 Graph::Graph()
 {
-    vCount = 0;
-    edgeCount = 0;
-    vertices = {};
-    edges = {};
-    stack = {};
+
 }
 
-Graph::Graph(int v)
+Graph::Graph(int V)
 {
-    vCount = v;
-    edgeCount = 0;
-    vertices = {};
-    edges = {};
-    stack = {};
-    //adjacencyList = new std::list<Source>[vCount];
+    this->V = V;
+    //adj = new list<int>[V];
+    adj = new DLinkedList<int>[V];
 }
 
-void Graph::addVertices(int v)
+void Graph::addEdge(int v, int w)
 {
-    vertices.push_back(v);
-    //edges[v] = 0;
+    //adj[v].push_back(w); // Add w to v’s list.
+    adj[v].add(w);
 }
 
-void Graph::addEdge(int v1, int v2)
+
+void Graph::DFSUtil(int v, bool visited[])
 {
-    //adjacencyList[v1].push_back(v2);
-    edges[v1] = v2;
+    // Mark the current node as visited and
+    // print it
+    visited[v] = true;
+    cout << v << " ";
+
+    // Recur for all the vertices adjacent
+    // to this vertex
+    list<int>::iterator i;
+    //for (i = adj[v].begin(); i != adj[v].end(); ++i)
+    for(int i = 0; i < adj->getSize();i++)
+        if (!visited[i])
+            DFSUtil(i, visited);
 }
 
+// DFS traversal of the vertices reachable from v.
+// It uses recursive DFSUtil()
+void Graph::DFS(int v)
+{
+    // Mark all the vertices as not visited
+    bool *visited = new bool[V];
+    for (int i = 0; i < V; i++)
+        visited[i] = false;
 
+    // Call the recursive helper function
+    // to print DFS traversal
+    DFSUtil(v, visited);
+}

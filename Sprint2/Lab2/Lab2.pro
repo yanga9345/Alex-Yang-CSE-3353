@@ -7,7 +7,8 @@ SOURCES += main.cpp \
     search.cpp \
     graph.cpp \
     dest.cpp \
-    source.cpp
+    source.cpp \
+    adjacencylist.cpp
 
 HEADERS += \
     searchalgo.h \
