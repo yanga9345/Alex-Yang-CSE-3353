@@ -29,9 +29,9 @@ int main(int argc, char** argv)
     {
         Search algo;
         algo.Load(argv);
-        algo.Select(0);
-        algo.Execute();
-        algo.Display();
+        //algo.Select(0);
+//        algo.Execute();
+        //algo.Display();
         algo.Stats();
     }
     else

@@ -5,6 +5,7 @@
 #include "graph.h"
 #include "adjacencylist.h"
 #include "dlinkedlist.h"
+#include <iostream>
 #include <fstream>
 #include <vector>
 #include <chrono>
