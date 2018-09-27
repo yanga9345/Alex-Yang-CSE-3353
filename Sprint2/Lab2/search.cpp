@@ -28,7 +28,6 @@ void Search::Load(char ** argv)
     destination = atoi(argv[2]);
     char *c = new char[15];
     std::string s_num;
-    int v, e;
     int v1, v2, comma, start = 0;
 
     ifstream graphFile("graph.txt");
@@ -39,7 +38,7 @@ void Search::Load(char ** argv)
     {
         graphFile.getline(c, 15);
         s_num = string(c);
-        size_t n = std::count(s_num.begin(), s_num.end(), ',');
+        //size_t n = std::count(s_num.begin(), s_num.end(), ',');
         comma = s_num.find(',');
 
         v1 = stoi(s_num.substr(start, comma));
@@ -78,11 +77,8 @@ void Search::Load(char ** argv)
             }
             else
             {
-                //graph.addEdge(v1, v2);
                 d1 = dest(v2);
                 s_num = string(c);
-
-                //d1.setPosition(x, y, z);
 
                 location = sources[count-1].locationOf(v2);
 
@@ -97,17 +93,16 @@ void Search::Load(char ** argv)
                 }
             }
             start = comma + 1;
-            //s_num = s_num.substr(comma + 1, s_num.length()-comma-1);
+
         }
     }
 
 
     graphFile.close();
 
-
+    //reads in all the position data
     while(positionsFile.getline(c, 50))
     {
-        //positionsFile.getline(c, 50);
         s_num = string(c);
 
         comma = s_num.find(',');
@@ -139,8 +134,32 @@ void Search::Load(char ** argv)
             }
         }
     }
-    weightsFile.close();
+
     positionsFile.close();
+
+
+    //reads in all the edge weights and assigns them to the destinations
+    int w;
+    while(weightsFile.getline(c, 50))
+    {
+        s_num = string(c);
+        comma = s_num.find(',');
+        v1 = stoi(s_num.substr(0, comma));
+        start = comma + 1;
+        comma = s_num.find(',', start);
+        v2 = stoi(s_num.substr(start, comma));
+        w = stoi(s_num.substr(comma + 1, s_num.length() - comma - 1));
+
+        for(int i = 0; i < sources.getSize(); i++)
+        {
+            if(sources[i].getID() == v1 && sources[i].contains(v2))
+            {
+                location = sources[i].locationOf(v2);
+                sources[i].getDestination(location).setWeight(w);
+            }
+        }
+    }
+    weightsFile.close();
     al = adjacencylist(sources);
 }
 
@@ -170,11 +189,6 @@ void Search::Execute()
 //prints the sorted vector
 void Search::Display()
 {
-//    for(int i = 0; i < sources.getSize(); i++)
-//    {
-//        sources[i].print();
-//    }
-//    cout << endl;
     al.print();
 }
 

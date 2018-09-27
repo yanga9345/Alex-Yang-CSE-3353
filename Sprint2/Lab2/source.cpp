@@ -78,7 +78,8 @@ int Source::getSize()
 //displays the source's name and its destination information
 void Source::print()
 {
-    cout << "Source: " << id << endl;
+    cout << "Source ID: " << id  << endl;
+    cout << "Source Pos: (" << x << "," << y << "," << z << ")" << std::endl;
     for(int i = 0; i < links; i++)
     {
         destinations[i].print();

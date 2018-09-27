@@ -31,6 +31,13 @@ dest& dest::operator=(const dest& d)
     return *this;
 }
 
+//setters
+
+void dest::setWeight(int in)
+{
+    weight = in;
+}
+
 //getters
 
 int dest::getID()

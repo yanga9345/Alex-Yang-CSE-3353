@@ -20,11 +20,7 @@ using namespace std;
 //runs the whole program
 int main(int argc, char** argv)
 {
-    if(argc == 2)
-    {
-
-    }
-    else if(argc == 3)
+    if(argc == 3)
     {
         Search algo;
         algo.Load(argv);

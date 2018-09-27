@@ -246,7 +246,6 @@ DIST          = ../../../Qt/5.9.1/gcc_64/mkspecs/features/spec_pre.prf \
 		stack.h \
 		node.h \
 		dlinkedlist.h \
-		dfsrecursive.h \
 		fileio.h ../Lab2/main.cpp \
 		../Lab2/search.cpp \
 		../Lab2/graph.cpp \

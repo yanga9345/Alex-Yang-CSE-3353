@@ -9,7 +9,6 @@ class dest
 {
 private:
     //private data members
-    //std::string name;
     int id;
     int weight, time;
     double x, y, z;
@@ -19,7 +18,7 @@ public:
     dest(int);
     dest(int, int, int);
     dest& operator=(const dest&);
-    //std::string getName();
+    void setWeight(int);
     int getID();
     int getWeight();
     int getTime();
