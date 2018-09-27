@@ -5,7 +5,6 @@
 #include <list>
 #include "source.h"
 #include "dest.h"
-//#include "fileio.h"
 #include "stack.h"
 
 #include <iostream>
@@ -32,6 +31,15 @@ public:
     int getSize();
     void print();
 
+    void DFSIterative(int, int);
+    void DFSRecursive(int, int);
+
+    void BFSIterative(int, int);
+    void BFSRecursive(int, int);
+
+    void Dijkstra(int, int);
+
+    void AStar(int, int);
 };
 
 #endif // ADJACENCYLIST_H

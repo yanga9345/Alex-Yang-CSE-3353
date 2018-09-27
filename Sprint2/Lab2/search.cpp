@@ -2,7 +2,7 @@
 
 Search::Search()
 {
-      algorithms.push_back(SearchAlgo::DFSRecursive);
+    algorithms.push_back(SearchAlgo::DFSRecursive);
 }
 
 //loads data file into Sort
@@ -189,6 +189,7 @@ void Search::Execute()
 //prints the sorted vector
 void Search::Display()
 {
+    cout << "Adjacency List / Graph: \n\n" << endl;
     al.print();
 }
 

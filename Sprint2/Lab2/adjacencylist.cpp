@@ -65,3 +65,34 @@ void adjacencylist::print()
         flights[i].print();
     }
 }
+
+
+void adjacencylist::DFSIterative(int, int)
+{
+
+}
+
+void adjacencylist::DFSRecursive(int, int)
+{
+
+}
+
+void adjacencylist::BFSIterative(int, int)
+{
+
+}
+
+void adjacencylist::BFSRecursive(int, int)
+{
+
+}
+
+void adjacencylist::Dijkstra(int, int)
+{
+
+}
+
+void adjacencylist::AStar(int, int)
+{
+
+}

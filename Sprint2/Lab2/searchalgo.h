@@ -31,9 +31,9 @@ public:
 //    }
 
     // The function to do DFS traversal. It uses recursive DFSUtil()
-    static string DFSRecursive(DLinkedList<Source> sources, int source, int dest)
+    static string DFSRecursive(adjacencylist aj, int source, int destination)
     {
-        //g.DFS(source);
+        aj.DFSRecursive(source, destination);
         return "DFS Recursive";
     }
 

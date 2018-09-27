@@ -19,9 +19,9 @@ class Search: public Algorithm
 {
 private:
     //function pointer of a function that takes in a vector of ints and returns a string (name of the type of sort [Bubble, Insertion, Merge])
-    std::string(*activeAlgo)(DLinkedList<Source>, int, int) = NULL;
+    std::string(*activeAlgo)(adjacencylist, int, int) = NULL;
     //vector of function pointers described above
-    std::vector<std::string(*)(DLinkedList<Source>, int, int)> algorithms;
+    std::vector<std::string(*)(adjacencylist, int, int)> algorithms;
     //time it takes to run a sort represented by a double
     double runTime;
     //strings for the name of the type of sort and the name of the file that is currently loaded
