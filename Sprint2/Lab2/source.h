@@ -14,6 +14,7 @@ private:
     //std::string name;
     int id;
     int links;
+    double x, y, z;
 public:
     //public functions
     Source();
@@ -27,8 +28,9 @@ public:
     DLinkedList<dest>& getDestinations();
     int getSize();
     void print();
-    //std::string getName();
     int getID();
+    void setPosition(double, double, double);
+
 
 };
 #endif // SOURCE_H

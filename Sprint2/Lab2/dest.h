@@ -11,7 +11,8 @@ private:
     //private data members
     //std::string name;
     int id;
-    int cost, time;
+    int weight, time;
+    double x, y, z;
 public:
     //public functions
     dest();
@@ -20,10 +21,11 @@ public:
     dest& operator=(const dest&);
     //std::string getName();
     int getID();
-    int getCost();
+    int getWeight();
     int getTime();
     void print();
     void set(int, int, int);
+    void setPosition(double, double, double);
 };
 
 #endif // DEST_H

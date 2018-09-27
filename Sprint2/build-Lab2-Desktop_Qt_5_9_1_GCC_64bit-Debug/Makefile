@@ -246,7 +246,8 @@ DIST          = ../../../Qt/5.9.1/gcc_64/mkspecs/features/spec_pre.prf \
 		stack.h \
 		node.h \
 		dlinkedlist.h \
-		dfsrecursive.h ../Lab2/main.cpp \
+		dfsrecursive.h \
+		fileio.h ../Lab2/main.cpp \
 		../Lab2/search.cpp \
 		../Lab2/graph.cpp \
 		../Lab2/dest.cpp \
@@ -659,10 +660,10 @@ main.o: ../Lab2/main.cpp ../Lab2/search.h \
 		../Lab2/algorithm.h \
 		../Lab2/searchalgo.h \
 		../Lab2/graph.h \
-		../Lab2/adjacencylist.h \
-		../Lab2/source.h \
 		../Lab2/dlinkedlist.h \
 		../Lab2/node.h \
+		../Lab2/adjacencylist.h \
+		../Lab2/source.h \
 		../Lab2/dest.h \
 		../Lab2/stack.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Lab2/main.cpp
@@ -671,15 +672,17 @@ search.o: ../Lab2/search.cpp ../Lab2/search.h \
 		../Lab2/algorithm.h \
 		../Lab2/searchalgo.h \
 		../Lab2/graph.h \
-		../Lab2/adjacencylist.h \
-		../Lab2/source.h \
 		../Lab2/dlinkedlist.h \
 		../Lab2/node.h \
+		../Lab2/adjacencylist.h \
+		../Lab2/source.h \
 		../Lab2/dest.h \
 		../Lab2/stack.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o search.o ../Lab2/search.cpp
 
-graph.o: ../Lab2/graph.cpp ../Lab2/graph.h
+graph.o: ../Lab2/graph.cpp ../Lab2/graph.h \
+		../Lab2/dlinkedlist.h \
+		../Lab2/node.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o graph.o ../Lab2/graph.cpp
 
 dest.o: ../Lab2/dest.cpp ../Lab2/dest.h

@@ -10,7 +10,8 @@ using namespace std;
 //templated SortAlgo class containing all the algorithms (no .cpp)
 #include <iostream>
 #include <list>
-#include <graph.h>
+#include "graph.h"
+#include "adjacencylist.h"
 
 class SearchAlgo
 {
@@ -30,9 +31,9 @@ public:
 //    }
 
 //    // The function to do DFS traversal. It uses recursive DFSUtil()
-    static string DFSRecursive(Graph g, int source, int dest)
+    static string DFSRecursive(DLinkedList<Source> sources, int source, int dest)
     {
-        g.DFS(source);
+        //g.DFS(source);
         return "DFS Recursive";
     }
 

@@ -27,58 +27,16 @@ int main(int argc, char** argv)
     }
     else if(argc == 3)
     {
-        std::cout << "Hello World. " << endl;
         Search algo;
         algo.Load(argv);
         algo.Select(0);
         algo.Execute();
-        std::cout << "Hello Again. " << endl;
-
-//        Graph g(4);
-//        g.addEdge(0, 1);
-//        g.addEdge(0, 2);
-//        g.addEdge(1, 2);
-//        g.addEdge(2, 0);
-//        g.addEdge(2, 3);
-//        g.addEdge(3, 3);
+        algo.Display();
+        algo.Stats();
     }
     else
         cout << "Error. Invalid number of command line arguments." << endl;
 
-    /**
-    //keeps track of total program run time
-    auto start = std::chrono::high_resolution_clock::now();
-
-    //creates a FileGenerator object which creates all the initial data sets
-    FileGenerator f;
-    f.Run();
-
-    //instantiates a vector of filenames to be used when running all the sorts
-    vector<string> filenames = f.getFileNames();
-
-    Algorithm algo;
-
-    for(string f: filenames)
-    {
-        cout << endl;
-        algo.Load((char*)f.c_str());
-        for(int i = 0; i < 3; i++)
-        {
-            algo.Select(i);
-            algo.Execute();
-            //algo.Display(); //uncomment this to print the sorted numbers
-            algo.Stats();
-            algo.Save();
-        }
-    }
-
-    //displays total program run time
-    auto end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> elapsed = end - start;
-    cout << "Total Time Elapsed: " << setprecision(3) <<
-            elapsed.count() << " seconds " << endl;
-
-    **/
 
     return 0;
 }

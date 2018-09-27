@@ -7,8 +7,7 @@
 #include "dlinkedlist.h"
 using namespace std;
 
-// Graph class represents a directed graph
-// using adjacency list representation
+// based on: https://www.geeksforgeeks.org/depth-first-search-or-dfs-for-a-graph/
 class Graph
 {
     int V;    // No. of vertices

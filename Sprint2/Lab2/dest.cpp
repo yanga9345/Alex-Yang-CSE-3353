@@ -8,21 +8,21 @@ dest::dest()
 dest::dest(int new_id)
 {
     id = new_id;
-    cost = 0;
+    weight = 0;
     time = 0;
 }
 
-dest::dest(int new_id, int new_cost, int new_time)
+dest::dest(int new_id, int new_weight, int new_time)
 {
     id = new_id;
-    cost = new_cost;
+    weight = new_weight;
     time = new_time;
 }
 
 dest& dest::operator=(const dest& d)
 {
     this->id = d.id;
-    cost = d.cost;
+    weight = d.weight;
     time = d.time;
 
     return *this;
@@ -35,9 +35,9 @@ int dest::getID()
     return id;
 }
 
-int dest::getCost()
+int dest::getWeight()
 {
-    return cost;
+    return weight;
 }
 
 int dest::getTime()
@@ -48,9 +48,9 @@ int dest::getTime()
 //outputs formatted information on the dest
 void dest::print()
 {
-    std::cout << "   dest: " << id << "     cost: $" << cost;
+    std::cout << "   dest: " << id << "     Cost: " << weight;
 
-    if(cost > 99)
+    if(weight > 99)
     {
         std::cout << "   time: " << time << std::endl;
     }
@@ -60,9 +60,16 @@ void dest::print()
     }
 }
 
-void dest::set(int new_id, int new_cost, int new_time)
+void dest::set(int new_id, int new_weight, int new_time)
 {
     id= new_id;
-    cost = new_cost;
+    weight = new_weight;
     time = new_time;
+}
+
+void dest::setPosition(double x, double y, double z)
+{
+    this->x = x;
+    this->y = y;
+    this->z = z;
 }

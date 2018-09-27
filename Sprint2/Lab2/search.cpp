@@ -93,6 +93,34 @@ void Search::Load(char ** argv)
 
     delete[] c;
     graphFile.close();
+
+
+    while(positionsFile.getline(c, 15))
+    {
+        positionsFile.getline(c, 15);
+        s_num = string(c);
+        size_t n = std::count(s_num.begin(), s_num.end(), ',');
+        int count = 0;
+        for(int i = 0; i < int(n) + 1; i++)
+        {
+            comma = s_num.find(',');
+            v2 = stoi(s_num.substr(start, comma));
+            if(i == 0)
+            {
+
+                v1 = v2;
+                s1 = Source(v1);
+
+            }
+            else
+            {
+                graph.addEdge(v1, v2);
+                d1 = dest(v2);
+                sources[count-1].addDest(d1);
+            }
+            s_num = s_num.substr(comma + 1, s_num.length()-comma);
+        }
+    }
     weightsFile.close();
     positionsFile.close();
 }
@@ -115,7 +143,7 @@ void Search::Select(int id)
 void Search::Execute()
 {
     auto start = std::chrono::high_resolution_clock::now();
-    sortName = activeAlgo(graph, source, destination);
+    sortName = activeAlgo(sources, source, destination);
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;
     runTime = elapsed.count();
@@ -124,17 +152,17 @@ void Search::Execute()
 //prints the sorted vector
 void Search::Display()
 {
-//    for(unsigned int i = 0; i < ; i++)
-//    {
-
-//    }
+    for(int i = 0; i < sources.getSize(); i++)
+    {
+        sources[i].print();
+    }
     cout << endl;
 }
 
 //displays the file, sorting method used, and time it took to run
 void Search::Stats()
 {
-    cout << "File: " << filename << endl;
+    //cout << "File: " << filename << endl;
     cout << sortName << endl;
     cout << "Run Time: " << setprecision(3) << runTime  << " seconds " << endl;
     cout << endl;

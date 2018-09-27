@@ -85,3 +85,10 @@ int Source::getID()
 {
     return id;
 }
+
+void Source::setPosition(double x, double y, double z)
+{
+    this->x = x;
+    this->y = y;
+    this->z = z;
+}

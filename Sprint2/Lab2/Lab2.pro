@@ -22,4 +22,5 @@ HEADERS += \
     stack.h \
     node.h \
     dlinkedlist.h \
-    dfsrecursive.h
+    dfsrecursive.h \
+    fileio.h
