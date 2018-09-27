@@ -22,6 +22,7 @@ public:
     //public functions
     adjacencylist();
     adjacencylist(char*);
+    adjacencylist(DLinkedList<Source>);
     adjacencylist& operator= (adjacencylist);
 
     Source& get(int);

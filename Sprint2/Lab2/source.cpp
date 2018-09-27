@@ -28,16 +28,16 @@ bool Source::contains(int d)
     return false;
 }
 
-////returns the index of an element in the source's destinations
-//int Source::locationOf(std::string d)
-//{
-//    for(int i = 0; i < links; i++)
-//    {
-//        if (destinations[i].getName() == d)
-//            return i;
-//    }
-//    return links;
-//}
+//returns the index of an element in the source's destinations
+int Source::locationOf(int d)
+{
+    for(int i = 0; i < links; i++)
+    {
+        if (destinations[i].getID() == d)
+            return i;
+    }
+    return links;
+}
 
 //overloaded = operator
 Source& Source::operator=(Source s)
@@ -63,6 +63,11 @@ bool Source::operator==(Source s)
 DLinkedList<dest>& Source::getDestinations()
 {
     return destinations;
+}
+
+dest& Source::getDestination(int index)
+{
+    return destinations[index];
 }
 
 int Source::getSize()

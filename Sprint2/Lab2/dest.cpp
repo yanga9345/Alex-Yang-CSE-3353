@@ -3,6 +3,9 @@
 //constructors
 dest::dest()
 {
+    id = 0;
+    weight = 0;
+    time = 0;
 }
 
 dest::dest(int new_id)
@@ -48,16 +51,8 @@ int dest::getTime()
 //outputs formatted information on the dest
 void dest::print()
 {
-    std::cout << "   dest: " << id << "     Cost: " << weight;
-
-    if(weight > 99)
-    {
-        std::cout << "   time: " << time << std::endl;
-    }
-    else
-    {
-        std::cout << "    time: " << time << std::endl;
-    }
+    std::cout << "  dest: " << id << "     Weight: " << weight;
+    std::cout << "  Pos: (" << x << "," << y << "," << z << ")" << std::endl;
 }
 
 void dest::set(int new_id, int new_weight, int new_time)

@@ -2,18 +2,7 @@
 
 Search::Search()
 {
-
-//    algorithms.push_back(SearchAlgo::BubbleSort);
-//    algorithms.push_back(SearchAlgo::InsertionSort);
-//    algorithms.push_back(SearchAlgo::MergeSort);
-
-//    algorithms.push_back(SearchAlgo::DFSIterative);
       algorithms.push_back(SearchAlgo::DFSRecursive);
-//    algorithms.push_back(SearchAlgo::BFSIterative);
-//    algorithms.push_back(SearchAlgo::BFSRecursive);
-//    algorithms.push_back(SearchAlgo::Dijkstra);
-//    algorithms.push_back(SearchAlgo::AStar);
-
 }
 
 //loads data file into Sort
@@ -39,7 +28,6 @@ void Search::Load(char ** argv)
     destination = atoi(argv[2]);
     char *c = new char[15];
     std::string s_num;
-    int loop = 0;
     int v, e;
     int v1, v2, comma, start = 0;
 
@@ -58,22 +46,29 @@ void Search::Load(char ** argv)
     }
 
     start = 0;
-    graph = Graph(v1);
+    //graph = Graph(v1);
     Source s1;
     dest d1;
 
     graphFile.clear();
     graphFile.seekg(0);
+
+    double x, y, z;
+    string temp = "";
+    int id;
+    int location = 0;
+
+    int count = 0;
     while(graphFile.getline(c, 50))
     {
         //graphFile.getline(c, 50);
         s_num = string(c);
         size_t n = std::count(s_num.begin(), s_num.end(), ',');
-        int count = 0;
         for(int i = 0; i < int(n) + 1; i++)
         {
-            comma = s_num.find(',');
-            v2 = stoi(s_num.substr(start, comma));
+            comma = s_num.find(',', start);
+            temp = s_num.substr(start, comma);
+            v2 = stoi(temp);
             if(i == 0)
             {
                 v1 = v2;
@@ -83,25 +78,38 @@ void Search::Load(char ** argv)
             }
             else
             {
-                graph.addEdge(v1, v2);
+                //graph.addEdge(v1, v2);
                 d1 = dest(v2);
-                sources[count-1].addDest(d1);
+                s_num = string(c);
+
+                //d1.setPosition(x, y, z);
+
+                location = sources[count-1].locationOf(v2);
+
+                if(sources[count-1].contains(v2))
+                {
+                    //cout << "yes" << endl;
+                }
+                else
+                {
+                    d1 = dest(v2);
+                    sources[count-1].addDest(d1);
+                }
             }
-            s_num = s_num.substr(comma + 1, s_num.length()-comma);
+            start = comma + 1;
+            //s_num = s_num.substr(comma + 1, s_num.length()-comma-1);
         }
     }
 
-    delete[] c;
+
     graphFile.close();
 
-    double x, y, z;
-    int temp, id;
+
     while(positionsFile.getline(c, 50))
     {
         //positionsFile.getline(c, 50);
         s_num = string(c);
-        size_t n = std::count(s_num.begin(), s_num.end(), ',');
-        int count = 0;
+
         comma = s_num.find(',');
         id = stoi(s_num.substr(start, comma));
         s_num = s_num.substr(comma + 1, s_num.length()-comma);
@@ -123,10 +131,17 @@ void Search::Load(char ** argv)
             {
                 sources[i].setPosition(x, y, z);
             }
+
+            location = sources[i].locationOf(id);
+            if(location < sources[i].getSize())
+            {
+                sources[i].destinations[location].setPosition(x,y,z);
+            }
         }
     }
     weightsFile.close();
     positionsFile.close();
+    al = adjacencylist(sources);
 }
 
 //selects the sorting method (Bubble, Insertion, Merge)
@@ -155,11 +170,12 @@ void Search::Execute()
 //prints the sorted vector
 void Search::Display()
 {
-    for(int i = 0; i < sources.getSize(); i++)
-    {
-        sources[i].print();
-    }
-    cout << endl;
+//    for(int i = 0; i < sources.getSize(); i++)
+//    {
+//        sources[i].print();
+//    }
+//    cout << endl;
+    al.print();
 }
 
 //displays the file, sorting method used, and time it took to run

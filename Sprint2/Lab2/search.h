@@ -33,6 +33,7 @@ public:
     vector<int> intData; //vector of ints read from file
     Graph graph;
     DLinkedList<Source> sources;
+    adjacencylist al;
 
     void Load(char*); //loads data file into Search
     void Load(char **);

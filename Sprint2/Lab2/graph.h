@@ -7,7 +7,8 @@
 #include "dlinkedlist.h"
 using namespace std;
 
-// based on: https://www.geeksforgeeks.org/depth-first-search-or-dfs-for-a-graph/
+// from: https://www.geeksforgeeks.org/depth-first-search-or-dfs-for-a-graph/
+//I don't think I ever even use this in the program...
 class Graph
 {
     int V;    // No. of vertices

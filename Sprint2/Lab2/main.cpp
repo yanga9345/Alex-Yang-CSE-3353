@@ -4,9 +4,8 @@
  * CSE 3353
  * September 27th, 2018
  *
- * Lab 2:
- *
- *
+ * Lab 2: My program just creates an adjacencyList and tries to
+ * input all the relevant data
  */
 
 #include <iostream>
@@ -29,9 +28,9 @@ int main(int argc, char** argv)
     {
         Search algo;
         algo.Load(argv);
-        //algo.Select(0);
-//        algo.Execute();
-        //algo.Display();
+        algo.Select(0);
+        algo.Execute();
+        algo.Display();
         algo.Stats();
     }
     else

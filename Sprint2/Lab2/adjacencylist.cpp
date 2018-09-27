@@ -22,6 +22,15 @@ adjacencylist::adjacencylist()
 //    }
 //}
 
+adjacencylist::adjacencylist(DLinkedList<Source> in)
+{
+    int curr = 0;
+    flights = in;
+    numSources = in.getSize();
+    //for(int i = 0; i < numSources; i++)
+        //its.add(curr);
+}
+
 //checks to see if an element is in adjacency list
 bool adjacencylist::contains(int in)
 {

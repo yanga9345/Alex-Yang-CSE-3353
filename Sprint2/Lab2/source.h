@@ -10,12 +10,13 @@ class Source
 {
 private:
     //private data members
-    DLinkedList<dest> destinations;
+    //DLinkedList<dest> destinations;
     //std::string name;
     int id;
     int links;
     double x, y, z;
 public:
+    DLinkedList<dest> destinations;
     //public functions
     Source();
     Source(int);
