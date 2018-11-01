@@ -15,11 +15,13 @@ Node::Node(int in, float x, float y, float z)
 }
 
 
+
 void Node::addConnection(Node &in)
 {
     connections.push_back(in);
 }
 
+//getters
 
 vector<Node> Node::getConnections()
 {
@@ -46,13 +48,15 @@ float Node::getZ()
     return z;
 }
 
+//outputs the id and coordinates of a node
 void Node::print()
 {
     std::cout << id << ": (" << x << "," <<
                  y <<  "," << z << ")" << endl;
 }
 
-void Node::getDistance(Node n2)
+//returns a representation of the distance between nodes
+float Node::getDistance(Node n2)
 {
     float dist = this->x - n2.getX() + this->y - n2.getY();
     if(dist < 0)

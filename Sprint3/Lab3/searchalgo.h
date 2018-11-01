@@ -11,7 +11,7 @@ using namespace std;
 //templated SortAlgo class containing all the algorithms (no .cpp)
 #include <iostream>
 #include <list>
-//#include "adjacencylist.h"
+#include <algorithm>
 
 class SearchAlgo
 {
@@ -27,9 +27,23 @@ public:
 
     static string Brute_Force(vector<Node> vec, int source, int destination)
     {
-        for(int i = 0; i < vec.size(); i++)
+        int IDs[vec.size()/4];
+        for(unsigned int i = 0; i < vec.size(); i++)
         {
-
+            IDs[i] = vec[i].getID();
+        }
+        Node currentNode = vec[0];
+        while(std::next_permutation(IDs, IDs+vec.size()))
+        {
+            int size = sizeof(IDs);
+            if(IDs[0] == source && IDs[sizeof(IDs)-1] == destination)
+            {
+                for(unsigned int i = 0; i < vec.size(); i++)
+                {
+                    cout << IDs[i] << " ";
+                }
+                cout << endl;
+            }
         }
         return "Brute Force";
     }

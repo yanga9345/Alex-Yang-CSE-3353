@@ -232,7 +232,6 @@ DIST          = ../../../Qt/5.9.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.9.1/gcc_64/mkspecs/features/yacc.prf \
 		../../../Qt/5.9.1/gcc_64/mkspecs/features/lex.prf \
 		../Lab3/Lab3.pro algorithm.h \
-		dest.h \
 		fileio.h \
 		node.h \
 		search.h \
@@ -649,7 +648,7 @@ main.o: ../Lab3/main.cpp ../Lab3/search.h \
 		../Lab3/node.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Lab3/main.cpp
 
-dest.o: ../Lab3/dest.cpp ../Lab3/dest.h
+dest.o: ../Lab3/dest.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dest.o ../Lab3/dest.cpp
 
 search.o: ../Lab3/search.cpp ../Lab3/search.h \

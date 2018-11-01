@@ -80,7 +80,7 @@ void Search::Select(int id)
 void Search::Execute()
 {
     auto start = std::chrono::high_resolution_clock::now();
-    //sortName = activeAlgo(sources, source, destination);
+    sortName = activeAlgo(vec, source, destination);
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;
     runTime = elapsed.count();
