@@ -1,85 +1,107 @@
 #ifndef DSSTACK_H
 #define DSSTACK_H
 
-#include <string>
-#include <list>
-#include "node.h"
-
+#ifndef Stack_H
+#define Stack_H
+#include <iostream>
+#include <cstdlib>
 using namespace std;
-template<typename t>
+
+// define default capacity of Stack
+#define SIZE 10
+
+// Class for Stack
+template <typename T>
 class Stack
 {
-private:
-    //private data members
-    std::list<t> linkedlist;
-public:
-    //public functions
-    Stack();
-    t peek();
-    bool contains(int);
-    void push(t in);
-    void pop();
-    bool isEmpty();
+    T *arr;
+    int top;
+    int capacity;
 
-    std::list<t>& getStack();
+public:
+    Stack(int size = SIZE);	// constructor
+
+    void push(T);
+    T pop();
+    T peek();
+
+    int size();
+    bool isEmpty();
+    bool isFull();
 };
 
-template<typename t>
-Stack<t>::Stack()
+// Constructor to initialize Stack
+template <typename T>
+Stack<T>::Stack(int size)
 {
-
+    arr = new T[size];
+    capacity = size;
+    top = -1;
 }
 
-//returns top of stack
-template<typename t>
-t Stack<t>::peek()
+// function to add an element x in the Stack
+template <typename T>
+void Stack<T>::push(T x)
 {
-    t result;
-    while(linkedlist.hasNext())
-        linkedlist.temp = linkedlist.temp->next;
-    result = linkedlist.temp->data;
-
-    return result;
-}
-
-//checks to see if a value is contained within the stack
-template<typename t>
-bool Stack<t>::contains(int cmp)
-{
-    return linkedlist.contains(cmp);
-}
-
-//adds element to stack
-template<typename t>
-void Stack<t>::push(t in)
-{
-    linkedlist.add(in);
-}
-
-//removes the top element of the stack
-template<typename t>
-void Stack<t>::pop()
-{
-    if(!isEmpty())
+    if (isFull())
     {
-        node<t>* oldTemp = linkedlist.temp;
-        linkedlist.temp = oldTemp->next;
-        delete oldTemp;
+        cout << "OverFlow\nProgram Terminated\n";
+        exit(EXIT_FAILURE);
     }
+
+    cout << "Inserting " << x << endl;
+    arr[++top] = x;
 }
 
-//returns true if stack is empty
-template<typename t>
-bool Stack<t>::isEmpty()
+// function to pop top element from the Stack
+template <typename T>
+T Stack<T>::pop()
 {
-    return linkedlist.isEmpty();
+    // check for Stack underflow
+    if (isEmpty())
+    {
+        cout << "UnderFlow\nProgram Terminated\n";
+        exit(EXIT_FAILURE);
+    }
+
+    cout << "Removing " << peek() << endl;
+
+    // decrease Stack size by 1 and (optionally) return the popped element
+    return arr[top--];
 }
 
-//returns the linkedlist within the stack
-template<typename t>
-std::list<t>& Stack<t>::getStack()
+// function to return top element in a Stack
+template <typename T>
+T Stack<T>::peek()
 {
-    return linkedlist;
+    if (!isEmpty())
+        return arr[top];
+    else
+        exit(EXIT_FAILURE);
 }
+
+// Utility function to return the size of the Stack
+template <typename T>
+int Stack<T>::size()
+{
+    return top + 1;
+}
+
+// Utility function to check if the Stack is empty or not
+template <typename T>
+bool Stack<T>::isEmpty()
+{
+    return top == -1;	// or return size() == 0;
+}
+
+// Utility function to check if the Stack is full or not
+template <typename T>
+bool Stack<T>::isFull()
+{
+    return top == capacity - 1;	// or return size() == capacity;
+}
+
+
+#endif // Stack_H
 
 #endif // DSSTACK_H

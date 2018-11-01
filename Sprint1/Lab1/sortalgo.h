@@ -51,7 +51,6 @@ public:
                 data[j+1] = data[j];
                 j = j-1;
             }
-
             data[j+1] = key;
         }
         return "Insertion Sort";
@@ -78,9 +77,9 @@ public:
         T temp2[temp2size];
 
         //splits data into the two temp arrays
-        for (i = 0; i < temp1size; i++)
+        for(int i = 0; i < temp1size; i++)
             temp1[i] = data[left + i];
-        for (j = 0; j < temp2size; j++)
+        for (int j = 0; j < temp2size; j++)
             temp2[j] = data[middle + 1 + j];
 
         /*merges the temp arrays into one array*/
