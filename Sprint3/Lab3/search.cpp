@@ -22,10 +22,8 @@ void Search::Load(char* dat)
     inFile.close();
 }
 
-void Search::Load(char ** argv)
+void Search::Load()
 {
-    source = atoi(argv[1]);
-    destination = atoi(argv[2]);
     char *c = new char[15];
     std::string s_num;
     int comma, start = 0;
@@ -80,7 +78,7 @@ void Search::Select(int id)
 void Search::Execute()
 {
     auto start = std::chrono::high_resolution_clock::now();
-    sortName = activeAlgo(vec, source, destination);
+    sortName = activeAlgo(vec);
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;
     runTime = elapsed.count();
@@ -89,11 +87,7 @@ void Search::Execute()
 //prints the sorted vector
 void Search::Display()
 {
-    cout << "Graph: \n\n" << endl;
-    for(int i = 0; i < vec.size(); i++)
-    {
-        vec[i].print();
-    }
+
 }
 
 //displays the file, sorting method used, and time it took to run

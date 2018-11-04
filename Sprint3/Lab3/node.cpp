@@ -2,12 +2,12 @@
 
 Node::Node()
 {
-    visited = false;
+    //visited = false;
 }
 
 Node::Node(int in, float x, float y, float z)
 {
-    visited = false;
+    //visited = false;
     id = in;
     this->x = x;
     this->y = y;
@@ -16,17 +16,17 @@ Node::Node(int in, float x, float y, float z)
 
 
 
-void Node::addConnection(Node &in)
-{
-    connections.push_back(in);
-}
+//void Node::addConnection(Node &in)
+//{
+//    connections.push_back(in);
+//}
 
 //getters
 
-vector<Node> Node::getConnections()
-{
-    return connections;
-}
+//vector<Node> Node::getConnections()
+//{
+//    return connections;
+//}
 
 int Node::getID()
 {
@@ -48,6 +48,20 @@ float Node::getZ()
     return z;
 }
 
+bool Node::operator<(Node in)
+{
+    if(this->id < in.getID())
+        return true;
+    return false;
+}
+
+bool Node::operator>(Node in)
+{
+    if(this->id > in.getID())
+        return true;
+    return false;
+}
+
 //outputs the id and coordinates of a node
 void Node::print()
 {
@@ -58,9 +72,9 @@ void Node::print()
 //returns a representation of the distance between nodes
 float Node::getDistance(Node n2)
 {
-    float dist = this->x - n2.getX() + this->y - n2.getY();
-    if(dist < 0)
-        return (dist * -1);
-    else
-        return dist;
+    float XDist = this->x - n2.getX();
+    float YDist = this->y - n2.getY();
+    float ZDist = this->z - n2.getZ();
+
+    return sqrt(XDist * XDist + YDist * YDist + ZDist * ZDist);
 }

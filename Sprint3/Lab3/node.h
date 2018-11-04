@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <cmath>
 using namespace std;
 
 //Node class
@@ -12,13 +13,17 @@ class Node
 private:
     int id;
     float x, y, z;
-    bool visited;
-    vector<Node> connections;
+    //bool visited;
+    //vector<Node> connections;
 public:
     Node();
     Node(int, float, float, float);
-    void addConnection(Node &in);
-    vector<Node> getConnections();
+    //void addConnection(Node &in);
+    //vector<Node> getConnections();
+
+    bool operator<(Node in);
+
+    bool operator>(Node in);
 
     int getID();
     float getX();

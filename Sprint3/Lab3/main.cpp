@@ -16,11 +16,11 @@
 using namespace std;
 
 //runs the whole program
-int main(int argc, char** argv)
+int main()
 {
 
     Search algo;
-    algo.Load(argv);
+    algo.Load();
     algo.Select(0);
     algo.Execute();
     algo.Display();

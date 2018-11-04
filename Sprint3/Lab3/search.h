@@ -18,9 +18,9 @@ class Search: public Algorithm
 {
 private:
     //function pointer of a function that takes in a vector of ints and returns a string (name of the type of sort [Bubble, Insertion, Merge])
-    std::string(*activeAlgo)(vector<Node>, int, int) = NULL;
+    std::string(*activeAlgo)(vector<Node>) = NULL;
     //vector of function pointers described above
-    std::vector<std::string(*)(vector<Node>, int, int)> algorithms;
+    std::vector<std::string(*)(vector<Node>)> algorithms;
     //time it takes to run a sort represented by a double
     double runTime;
     //strings for the name of the type of sort and the name of the file that is currently loaded
@@ -34,6 +34,7 @@ public:
 
     void Load(char*); //loads data file into Search
     void Load(char **);
+    void Load();
     void Select(int); //selects the sorting method
     void Execute(); //executes the selected method
     void Display(); //prints the sorted vector

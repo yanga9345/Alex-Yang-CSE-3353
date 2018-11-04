@@ -51,13 +51,13 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../Lab3/main.cpp \
-		../Lab3/dest.cpp \
 		../Lab3/search.cpp \
-		../Lab3/node.cpp 
+		../Lab3/node.cpp \
+		../Lab3/path.cpp 
 OBJECTS       = main.o \
-		dest.o \
 		search.o \
-		node.o
+		node.o \
+		path.o
 DIST          = ../../../Qt/5.9.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.9.1/gcc_64/mkspecs/common/unix.conf \
 		../../../Qt/5.9.1/gcc_64/mkspecs/common/linux.conf \
@@ -235,10 +235,11 @@ DIST          = ../../../Qt/5.9.1/gcc_64/mkspecs/features/spec_pre.prf \
 		fileio.h \
 		node.h \
 		search.h \
-		searchalgo.h ../Lab3/main.cpp \
-		../Lab3/dest.cpp \
+		searchalgo.h \
+		path.h ../Lab3/main.cpp \
 		../Lab3/search.cpp \
-		../Lab3/node.cpp
+		../Lab3/node.cpp \
+		../Lab3/path.cpp
 QMAKE_TARGET  = Lab3
 DESTDIR       = 
 TARGET        = Lab3
@@ -645,20 +646,23 @@ compiler_clean:
 main.o: ../Lab3/main.cpp ../Lab3/search.h \
 		../Lab3/algorithm.h \
 		../Lab3/searchalgo.h \
-		../Lab3/node.h
+		../Lab3/node.h \
+		../Lab3/path.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Lab3/main.cpp
-
-dest.o: ../Lab3/dest.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dest.o ../Lab3/dest.cpp
 
 search.o: ../Lab3/search.cpp ../Lab3/search.h \
 		../Lab3/algorithm.h \
 		../Lab3/searchalgo.h \
-		../Lab3/node.h
+		../Lab3/node.h \
+		../Lab3/path.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o search.o ../Lab3/search.cpp
 
 node.o: ../Lab3/node.cpp ../Lab3/node.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o node.o ../Lab3/node.cpp
+
+path.o: ../Lab3/path.cpp ../Lab3/path.h \
+		../Lab3/node.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o path.o ../Lab3/path.cpp
 
 ####### Install
 

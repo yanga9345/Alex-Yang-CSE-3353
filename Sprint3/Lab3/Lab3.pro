@@ -4,13 +4,14 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    dest.cpp \
     search.cpp \
-    node.cpp
+    node.cpp \
+    path.cpp
 
 HEADERS += \
     algorithm.h \
     fileio.h \
     node.h \
     search.h \
-    searchalgo.h
+    searchalgo.h \
+    path.h
