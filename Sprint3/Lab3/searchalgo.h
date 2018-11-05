@@ -54,6 +54,7 @@ public:
             if(totalDistance < bestDistance)
             {
                 bestDistance = totalDistance;
+                bestPath.clear();
                 //bestPath = IDs;
                 for(unsigned int j = 0; j < IDs.size(); j++)
                 {
