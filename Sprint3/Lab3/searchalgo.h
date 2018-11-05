@@ -77,6 +77,82 @@ public:
 
         return "Brute Force";
     }
+
+
+    static string Dynamic_Programming(vector<Node> vec)
+    {
+        int* bestPath = new int[vec.size()];
+        float bestDistance = INT8_MAX;
+
+
+        float** matrix = new float*[vec.size()];
+        for(unsigned int i = 0; i < vec.size(); i++)
+        {
+            matrix[i] = new float[vec.size()];
+        }
+
+        for(unsigned int i = 0; i < vec.size(); i++)
+        {
+            for(unsigned int j = 0; j < vec.size(); j++)
+            {
+                matrix[i][j] = vec[i].getDistance(vec[j]);
+            }
+        }
+
+//        for(int i = 0; i < vec.size(); i++)
+//        {
+//            //cout << endl;
+//            for(int j = 0; j < vec.size(); j++)
+//                cout << "Matrix[" << i << "][" << j << "]" << ": " << matrix[i][j] << endl;
+//        }
+
+
+        vector<int> IDs;
+
+        for(unsigned int i = 0; i < vec.size(); i++)
+        {
+            IDs.push_back(i);
+        }
+
+        float totalDistance;
+
+        do
+        {
+            totalDistance = 0;
+
+            for(unsigned int i = 1; i < IDs.size(); i++)
+            {
+                totalDistance += matrix[IDs[i-1]][IDs[i]];
+            }
+
+            totalDistance += matrix[0][IDs.size()-1];
+
+            if(totalDistance < bestDistance)
+            {
+                bestDistance = totalDistance;
+
+                for(unsigned int i = 0; i < vec.size(); i++)
+                {
+                    bestPath[i] = vec[IDs[i]].getID();
+                }
+            }
+
+        } while(std::next_permutation(IDs.begin() + 1, IDs.end()));
+
+        std::cout << "Best Path: ";
+        for(unsigned int i = 0; i < vec.size(); i++)
+        {
+            std::cout << bestPath[i];
+            if(i < vec.size() - 1)
+            {
+                std::cout << " -> ";
+            }
+        }
+        std::cout << endl;
+        std::cout << "Best Path Length: " << bestDistance << endl << endl;
+
+        return "Dynamic Programming";
+    }
 };
 
 #endif // SEATCHALGO_H

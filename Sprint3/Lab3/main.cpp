@@ -21,11 +21,14 @@ int main()
 
     Search algo;
     algo.Load();
-    algo.Select(0);
-    algo.Execute();
-    algo.Display();
-    //algo.Save();
-    algo.Stats();
+    for(unsigned int i = 0; i < 2; i++)
+    {
+        algo.Select(i);
+        algo.Execute();
+        //algo.Display();
+        //algo.Save();
+        algo.Stats();
+    }
 
     return 0;
 }

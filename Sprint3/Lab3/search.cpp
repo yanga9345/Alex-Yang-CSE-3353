@@ -3,6 +3,7 @@
 Search::Search()
 {
     algorithms.push_back(SearchAlgo::Brute_Force);
+    algorithms.push_back(SearchAlgo::Dynamic_Programming);
 }
 
 //loads data file into Sort
