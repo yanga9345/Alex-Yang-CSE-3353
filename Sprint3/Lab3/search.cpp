@@ -2,8 +2,8 @@
 
 Search::Search()
 {
-    algorithms.push_back(SearchAlgo::Brute_Force);
-    algorithms.push_back(SearchAlgo::Dynamic_Programming);
+    algorithms.push_back(TSP_Algo::Brute_Force);
+    algorithms.push_back(TSP_Algo::Dynamic_Programming);
 }
 
 void Search::Load()
@@ -64,7 +64,7 @@ void Search::Display()
         }
         std::cout << possiblePaths[i][0];
         std::cout << endl;
-        std::cout << "Path Length: " << possibleDistances[i] << endl;
+        std::cout << "Path Length: " << setprecision(3) << possibleDistances[i] << endl;
     }
 }
 

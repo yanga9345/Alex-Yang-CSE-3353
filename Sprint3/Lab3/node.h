@@ -13,13 +13,9 @@ class Node
 private:
     int id;
     float x, y, z;
-    //bool visited;
-    //vector<Node> connections;
 public:
     Node();
     Node(int, float, float, float);
-    //void addConnection(Node &in);
-    //vector<Node> getConnections();
 
     bool operator<(Node in);
 

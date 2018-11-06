@@ -4,17 +4,18 @@
  * CSE 3353
  * November 6th, 2018
  *
- * Lab 3:
+ * Lab 3: Solves the Traveling Salesman Problem with Brute Force(Naive)
+ *  and Dynamic Programming Methods
  */
 
 #include <iostream>
 #include <fstream>
 #include "search.h"
-#include "searchalgo.h"
-#include "node.h"
 
 using namespace std;
 
+//runs algorithms for different graph sizes (4-12)
+//used to generate data in excel document
 void test()
 {
     Search algo;
@@ -26,8 +27,6 @@ void test()
             algo.Load(4+i);
             algo.Select(j);
             algo.Execute();
-            //algo.Display();
-            //algo.Save();
             algo.Stats();
         }
 
@@ -45,7 +44,7 @@ int main()
         algo.Load();
         algo.Select(i);
         algo.Execute();
-        //algo.Display();
+        //algo.Display(); //uncomment to see every path tested
         algo.Save();
         algo.Stats();
     }

@@ -1,8 +1,8 @@
 Dynamic Programming
 
 Best Path: 1 -> 5 -> 4 -> 2 -> 3 -> 1
-Best Path Length: 28.5881
+Best Path Length: 28.6
 
-Run Time: 5.44e-05 seconds 
+Run Time: 7.82e-05 seconds 
 
 

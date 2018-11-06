@@ -41,8 +41,6 @@ vector<Node> FileHandler::loadGraph()
         comma = s_num.find(',');
         z = stof(s_num.substr(start, comma));
 
-
-        //std::cout << x << " " << y << " " << z << endl;
         vec.push_back(Node(id, x, y, z));
     }
     positionsFile.close();
@@ -64,7 +62,7 @@ void FileHandler::outputResults(string algoName, vector<int> bestPath, float bes
     }
     outFile << bestPath[0];
     outFile << endl;
-    outFile << "Best Path Length: " << bestDistance << endl << endl;
+    outFile << "Best Path Length: " << setprecision(3) << bestDistance << endl << endl;
 
     outFile << "Run Time: " << setprecision(3) << runTime  << " seconds " << endl;
     outFile << endl << endl;

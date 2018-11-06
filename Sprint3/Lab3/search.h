@@ -1,9 +1,5 @@
 #ifndef SORT_H
 #define SORT_H
-#include "algorithm.h"
-#include "searchalgo.h"
-#include "node.h"
-#include "filehandler.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -12,6 +8,10 @@
 #include <string>
 #include <algorithm>
 #include <cstdlib>
+
+#include "algorithm.h"
+#include "TSP_Algo.h"
+#include "filehandler.h"
 
 //header file for Sort Class
 //inherits from Algorithm base class
@@ -22,6 +22,9 @@ private:
     std::string(*activeAlgo)(vector<Node> &, vector<int> &, float &, vector<vector<int>> &, vector<float> &) = NULL;
     //vector of function pointers described above
     std::vector<std::string(*)(vector<Node> &, vector<int> &, float &, vector<vector<int>> &, vector<float> &)> algorithms;
+
+    //all variables down are used for displaying relevant information
+
     //time it takes to run an algorithm represented by a double
     double runTime;
     vector<int> bestPath;
@@ -34,9 +37,8 @@ private:
 public:
     int currentIndex;
     Search();
-    int source, destination;
     vector<int> intData; //vector of ints read from file
-    vector<Node> vec;
+    vector<Node> vec; //adjacency list representation of graph
 
     void Load();
     void Load(int);

@@ -10,8 +10,7 @@ SOURCES += main.cpp \
 
 HEADERS += \
     algorithm.h \
-    fileio.h \
     node.h \
     search.h \
-    searchalgo.h \
-    filehandler.h
+    filehandler.h \
+    TSP_Algo.h

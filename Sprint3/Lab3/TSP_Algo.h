@@ -1,30 +1,29 @@
-#ifndef SEARCHALGO_H
-#define SEARCHALGO_H
+#ifndef TSP_ALGO_H
+#define TSP_ALGO_H
 #include <vector>
 #include "node.h"
 #include <iostream>
 
 using namespace std;
 //the reason my static sort algorithms return strings is because I want
-//the names of the sorting method to be used in Sort (sortName)
+//the names of the algorithms for algoName)
 
-//templated SortAlgo class containing all the algorithms (no .cpp)
+//templated TSP_Algo class containing all the algorithms (no .cpp)
 #include <iostream>
-#include <list>
 #include <algorithm>
 
-class SearchAlgo
+class TSP_Algo
 {
 public:
-    SearchAlgo();
+    TSP_Algo();
 
+    //brute force algorithm
     static string Brute_Force(vector<Node> &vec, vector<int> &bestPath, float &bestDistance, vector<vector<int>> &possiblePaths, vector<float> &possibleDistances)
     {
         vector<int> tempVec;
         float totalDistance;
 
         vector<int> IDs; //integer representation of my graph
-        //vector<int> bestPath;
 
         //sets IDs to the IDs of each node of my graph
         for(unsigned int i = 0; i < vec.size(); i++)
@@ -66,17 +65,21 @@ public:
     }
 
 
+    //dynamic programming
     static string Dynamic_Programming(vector<Node> &vec, vector<int> &bestPath, float &bestDistance,  vector<vector<int>> &possiblePaths, vector<float> &possibleDistances)
     {
         vector<int> tempVec;
         bestDistance = INT8_MAX;
+        float totalDistance;
 
+        //sets up an adjacency matrix
         float** matrix = new float*[vec.size()];
         for(unsigned int i = 0; i < vec.size(); i++)
         {
             matrix[i] = new float[vec.size()];
         }
 
+        //loads up the values of the matrix with the distances between the i and j nodes
         for(unsigned int i = 0; i < vec.size(); i++)
         {
             for(unsigned int j = 0; j < vec.size(); j++)
@@ -85,14 +88,13 @@ public:
             }
         }
 
+        //vector of ints representing the ids of all the nodes
         vector<int> IDs;
-
         for(unsigned int i = 0; i < vec.size(); i++)
         {
             IDs.push_back(i);
         }
 
-        float totalDistance;
 
         do
         {
@@ -129,4 +131,4 @@ public:
     }
 };
 
-#endif // SEATCHALGO_H
+#endif // TSP_ALGO_H

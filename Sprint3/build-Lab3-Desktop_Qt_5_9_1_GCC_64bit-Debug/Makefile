@@ -232,11 +232,10 @@ DIST          = ../../../Qt/5.9.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.9.1/gcc_64/mkspecs/features/yacc.prf \
 		../../../Qt/5.9.1/gcc_64/mkspecs/features/lex.prf \
 		../Lab3/Lab3.pro algorithm.h \
-		fileio.h \
 		node.h \
 		search.h \
-		searchalgo.h \
-		filehandler.h ../Lab3/main.cpp \
+		filehandler.h \
+		TSP_Algo.h ../Lab3/main.cpp \
 		../Lab3/search.cpp \
 		../Lab3/node.cpp \
 		../Lab3/filehandler.cpp
@@ -645,14 +644,14 @@ compiler_clean:
 
 main.o: ../Lab3/main.cpp ../Lab3/search.h \
 		../Lab3/algorithm.h \
-		../Lab3/searchalgo.h \
+		../Lab3/TSP_Algo.h \
 		../Lab3/node.h \
 		../Lab3/filehandler.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Lab3/main.cpp
 
 search.o: ../Lab3/search.cpp ../Lab3/search.h \
 		../Lab3/algorithm.h \
-		../Lab3/searchalgo.h \
+		../Lab3/TSP_Algo.h \
 		../Lab3/node.h \
 		../Lab3/filehandler.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o search.o ../Lab3/search.cpp
