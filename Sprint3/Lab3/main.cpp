@@ -15,14 +15,34 @@
 
 using namespace std;
 
+void test()
+{
+    Search algo;
+    for(int i = 0; i < 9; i++)
+    {
+        cout << "Number of Nodes: " << i+4 << endl << endl;
+        for(unsigned int j = 0; j < 2; j++)
+        {
+            algo.Load(4+i);
+            algo.Select(j);
+            algo.Execute();
+            //algo.Display();
+            //algo.Save();
+            algo.Stats();
+        }
+
+        cout << "------------------------------------------" << endl << endl;
+    }
+}
+
 //runs the whole program
 int main()
 {
-
+    //test();
     Search algo;
-    algo.Load();
     for(unsigned int i = 0; i < 2; i++)
     {
+        algo.Load();
         algo.Select(i);
         algo.Execute();
         //algo.Display();

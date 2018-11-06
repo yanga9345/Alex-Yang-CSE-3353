@@ -53,11 +53,11 @@ OBJECTS_DIR   = ./
 SOURCES       = ../Lab3/main.cpp \
 		../Lab3/search.cpp \
 		../Lab3/node.cpp \
-		../Lab3/path.cpp 
+		../Lab3/filehandler.cpp 
 OBJECTS       = main.o \
 		search.o \
 		node.o \
-		path.o
+		filehandler.o
 DIST          = ../../../Qt/5.9.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.9.1/gcc_64/mkspecs/common/unix.conf \
 		../../../Qt/5.9.1/gcc_64/mkspecs/common/linux.conf \
@@ -236,10 +236,10 @@ DIST          = ../../../Qt/5.9.1/gcc_64/mkspecs/features/spec_pre.prf \
 		node.h \
 		search.h \
 		searchalgo.h \
-		path.h ../Lab3/main.cpp \
+		filehandler.h ../Lab3/main.cpp \
 		../Lab3/search.cpp \
 		../Lab3/node.cpp \
-		../Lab3/path.cpp
+		../Lab3/filehandler.cpp
 QMAKE_TARGET  = Lab3
 DESTDIR       = 
 TARGET        = Lab3
@@ -647,22 +647,22 @@ main.o: ../Lab3/main.cpp ../Lab3/search.h \
 		../Lab3/algorithm.h \
 		../Lab3/searchalgo.h \
 		../Lab3/node.h \
-		../Lab3/path.h
+		../Lab3/filehandler.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Lab3/main.cpp
 
 search.o: ../Lab3/search.cpp ../Lab3/search.h \
 		../Lab3/algorithm.h \
 		../Lab3/searchalgo.h \
 		../Lab3/node.h \
-		../Lab3/path.h
+		../Lab3/filehandler.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o search.o ../Lab3/search.cpp
 
 node.o: ../Lab3/node.cpp ../Lab3/node.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o node.o ../Lab3/node.cpp
 
-path.o: ../Lab3/path.cpp ../Lab3/path.h \
+filehandler.o: ../Lab3/filehandler.cpp ../Lab3/filehandler.h \
 		../Lab3/node.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o path.o ../Lab3/path.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o filehandler.o ../Lab3/filehandler.cpp
 
 ####### Install
 

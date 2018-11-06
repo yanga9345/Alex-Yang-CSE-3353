@@ -2,7 +2,6 @@
 #define SEARCHALGO_H
 #include <vector>
 #include "node.h"
-#include "path.h"
 #include <iostream>
 
 using namespace std;
@@ -19,21 +18,13 @@ class SearchAlgo
 public:
     SearchAlgo();
 
-    // The function to do DFS traversal. It uses recursive DFSUtil()
-//    static string DFSRecursive(adjacencylist al, int source, int destination)
-//    {
-//        al.DFSRecursive(source, destination);
-//        return "DFS Recursive";
-//    }
-
-    static string Brute_Force(vector<Node> vec)
+    static string Brute_Force(vector<Node> &vec, vector<int> &bestPath, float &bestDistance, vector<vector<int>> &possiblePaths, vector<float> &possibleDistances)
     {
-
+        vector<int> tempVec;
         float totalDistance;
-        float bestDistance = INT8_MAX;
 
         vector<int> IDs; //integer representation of my graph
-        vector<int> bestPath;
+        //vector<int> bestPath;
 
         //sets IDs to the IDs of each node of my graph
         for(unsigned int i = 0; i < vec.size(); i++)
@@ -55,36 +46,30 @@ public:
             {
                 bestDistance = totalDistance;
                 bestPath.clear();
-                //bestPath = IDs;
                 for(unsigned int j = 0; j < IDs.size(); j++)
                 {
                     bestPath.push_back(IDs[j] + 1);
                 }
             }
-        } while(std::next_permutation(IDs.begin() + 1, IDs.end()));
 
-        //displays best path
-        std::cout << "Best Path: ";
-        for(unsigned int i = 0; i < bestPath.size(); i++)
-        {
-            std::cout << bestPath[i];
-            if(i < bestPath.size() - 1)
+            tempVec.clear();
+            for(unsigned int i = 0; i < vec.size(); i++)
             {
-                std::cout << " -> ";
+                tempVec.push_back(vec[IDs[i]].getID());
             }
-        }
-        std::cout << endl;
-        std::cout << "Best Path Length: " << bestDistance << endl << endl;
+            possiblePaths.push_back(tempVec);
+            possibleDistances.push_back(totalDistance);
+
+        } while(std::next_permutation(IDs.begin() + 1, IDs.end()));
 
         return "Brute Force";
     }
 
 
-    static string Dynamic_Programming(vector<Node> vec)
+    static string Dynamic_Programming(vector<Node> &vec, vector<int> &bestPath, float &bestDistance,  vector<vector<int>> &possiblePaths, vector<float> &possibleDistances)
     {
-        int* bestPath = new int[vec.size()];
-        float bestDistance = INT8_MAX;
-
+        vector<int> tempVec;
+        bestDistance = INT8_MAX;
 
         float** matrix = new float*[vec.size()];
         for(unsigned int i = 0; i < vec.size(); i++)
@@ -99,14 +84,6 @@ public:
                 matrix[i][j] = vec[i].getDistance(vec[j]);
             }
         }
-
-//        for(int i = 0; i < vec.size(); i++)
-//        {
-//            //cout << endl;
-//            for(int j = 0; j < vec.size(); j++)
-//                cout << "Matrix[" << i << "][" << j << "]" << ": " << matrix[i][j] << endl;
-//        }
-
 
         vector<int> IDs;
 
@@ -131,26 +108,22 @@ public:
             if(totalDistance < bestDistance)
             {
                 bestDistance = totalDistance;
-
+                bestPath.clear();
                 for(unsigned int i = 0; i < vec.size(); i++)
                 {
-                    bestPath[i] = vec[IDs[i]].getID();
+                    bestPath.push_back(vec[IDs[i]].getID());
                 }
             }
 
-        } while(std::next_permutation(IDs.begin() + 1, IDs.end()));
-
-        std::cout << "Best Path: ";
-        for(unsigned int i = 0; i < vec.size(); i++)
-        {
-            std::cout << bestPath[i];
-            if(i < vec.size() - 1)
+            tempVec.clear();
+            for(unsigned int i = 0; i < vec.size(); i++)
             {
-                std::cout << " -> ";
+                tempVec.push_back(vec[IDs[i]].getID());
             }
-        }
-        std::cout << endl;
-        std::cout << "Best Path Length: " << bestDistance << endl << endl;
+            possiblePaths.push_back(tempVec);
+            possibleDistances.push_back(totalDistance);
+
+        } while(std::next_permutation(IDs.begin() + 1, IDs.end()));
 
         return "Dynamic Programming";
     }

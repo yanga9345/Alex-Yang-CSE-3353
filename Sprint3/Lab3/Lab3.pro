@@ -6,7 +6,7 @@ CONFIG -= qt
 SOURCES += main.cpp \
     search.cpp \
     node.cpp \
-    path.cpp
+    filehandler.cpp
 
 HEADERS += \
     algorithm.h \
@@ -14,4 +14,4 @@ HEADERS += \
     node.h \
     search.h \
     searchalgo.h \
-    path.h
+    filehandler.h

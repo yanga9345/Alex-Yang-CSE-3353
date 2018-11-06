@@ -2,8 +2,8 @@
 #define SORT_H
 #include "algorithm.h"
 #include "searchalgo.h"
-//#include "dlinkedlist.h"
 #include "node.h"
+#include "filehandler.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -11,20 +11,26 @@
 #include <iomanip>
 #include <string>
 #include <algorithm>
+#include <cstdlib>
 
 //header file for Sort Class
 //inherits from Algorithm base class
 class Search: public Algorithm
 {
 private:
-    //function pointer of a function that takes in a vector of ints and returns a string (name of the type of sort [Bubble, Insertion, Merge])
-    std::string(*activeAlgo)(vector<Node>) = NULL;
+    //function pointer of a function that takes in a vector of ints and returns a string (name of the type of algorithm [Brute Force, Dynamic Programming])
+    std::string(*activeAlgo)(vector<Node> &, vector<int> &, float &, vector<vector<int>> &, vector<float> &) = NULL;
     //vector of function pointers described above
-    std::vector<std::string(*)(vector<Node>)> algorithms;
-    //time it takes to run a sort represented by a double
+    std::vector<std::string(*)(vector<Node> &, vector<int> &, float &, vector<vector<int>> &, vector<float> &)> algorithms;
+    //time it takes to run an algorithm represented by a double
     double runTime;
-    //strings for the name of the type of sort and the name of the file that is currently loaded
-    string sortName, filename;
+    vector<int> bestPath;
+    vector<vector<int>> possiblePaths;
+    vector<float> possibleDistances;
+    float bestDistance;
+    //strings for the name of the type of algorithm and the name of the file that is currently loaded
+    string algoName, filename;
+    FileHandler f;
 public:
     int currentIndex;
     Search();
@@ -32,9 +38,10 @@ public:
     vector<int> intData; //vector of ints read from file
     vector<Node> vec;
 
-    void Load(char*); //loads data file into Search
-    void Load(char **);
+//    void Load(char*); //loads data file into Search
+//    void Load(char **);
     void Load();
+    void Load(int);
     void Select(int); //selects the sorting method
     void Execute(); //executes the selected method
     void Display(); //prints the sorted vector
