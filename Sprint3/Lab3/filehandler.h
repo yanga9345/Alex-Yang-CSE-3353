@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include "node.h"
+#include <iomanip>
 
 class FileHandler
 {
@@ -13,6 +14,8 @@ public:
     FileHandler();
     void readFile(vector<Node> &in);
     vector<Node> loadGraph();
+    void outputResults(string, vector<int>, float, double);
+    void clearFile();
 
 };
 

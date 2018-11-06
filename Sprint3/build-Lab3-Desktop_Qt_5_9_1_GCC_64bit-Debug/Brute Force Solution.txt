@@ -1,0 +1,8 @@
+Brute Force
+
+Best Path: 1 -> 5 -> 4 -> 2 -> 3 -> 1
+Best Path Length: 28.5881
+
+Run Time: 6.5e-05 seconds 
+
+

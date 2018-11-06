@@ -46,7 +46,7 @@ int main()
         algo.Select(i);
         algo.Execute();
         //algo.Display();
-        //algo.Save();
+        algo.Save();
         algo.Stats();
     }
 

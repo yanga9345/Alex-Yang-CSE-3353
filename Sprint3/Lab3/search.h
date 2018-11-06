@@ -38,8 +38,6 @@ public:
     vector<int> intData; //vector of ints read from file
     vector<Node> vec;
 
-//    void Load(char*); //loads data file into Search
-//    void Load(char **);
     void Load();
     void Load(int);
     void Select(int); //selects the sorting method

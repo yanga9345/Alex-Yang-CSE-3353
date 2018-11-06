@@ -71,7 +71,6 @@ void Search::Display()
 //displays the file, sorting method used, and time it took to run
 void Search::Stats()
 {
-    //cout << "File: " << filename << endl;
     cout << algoName << endl << endl;
 
     std::cout << "Best Path: ";
@@ -91,10 +90,5 @@ void Search::Stats()
 //outputs sorted vectors to text files
 void Search::Save()
 {
-    ofstream outFile(filename + " SORTED");
-    for(unsigned int i = 0; i < intData.size(); i++)
-    {
-        outFile << intData[i] << endl;
-    }
-    outFile.close();
+    f.outputResults(algoName, bestPath, bestDistance, runTime);
 }

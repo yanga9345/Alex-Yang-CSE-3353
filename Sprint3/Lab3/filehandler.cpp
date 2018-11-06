@@ -48,3 +48,33 @@ vector<Node> FileHandler::loadGraph()
     positionsFile.close();
     return vec;
 }
+
+void FileHandler::outputResults(string algoName, vector<int> bestPath, float bestDistance, double runTime)
+{
+    string fileName = algoName + " Solution.txt";
+    ofstream outFile(fileName);
+
+    outFile << algoName << endl << endl;
+
+    outFile << "Best Path: ";
+    for(unsigned int i = 0; i < bestPath.size(); i++)
+    {
+        outFile << bestPath[i];
+        outFile << " -> ";
+    }
+    outFile << bestPath[0];
+    outFile << endl;
+    outFile << "Best Path Length: " << bestDistance << endl << endl;
+
+    outFile << "Run Time: " << setprecision(3) << runTime  << " seconds " << endl;
+    outFile << endl << endl;
+
+    outFile.close();
+}
+
+void FileHandler::clearFile()
+{
+    std::ofstream ofs;
+    ofs.open("Solution.txt", std::ofstream::out | std::ofstream::trunc);
+    ofs.close();
+}
