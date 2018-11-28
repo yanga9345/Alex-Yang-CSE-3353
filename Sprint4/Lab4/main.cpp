@@ -39,13 +39,13 @@ int main()
 {
     //test();
     Search algo;
-    for(unsigned int i = 0; i < 1; i++)
+    for(unsigned int i = 0; i < 2; i++)
     {
         algo.Load();
-        algo.Select(0);
+        algo.Select(i);
         algo.Execute();
         //algo.Display(); //uncomment to see every path tested
-        algo.Save();
+        //algo.Save();
         algo.Stats();
     }
 

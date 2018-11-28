@@ -28,9 +28,9 @@ public:
     static float getFitness(vector<int> IDs, vector<Node> vec)
     {
         float totalDistance = 0;
-        for(unsigned int i = 1; i < IDs.size(); i++)
+        for(unsigned int i = 0; i < IDs.size()-1; i++)
         {
-            totalDistance += vec[IDs[i-1]].getDistance(vec[IDs[i]]);
+            totalDistance += vec[IDs[i]].getDistance(vec[IDs[i+1]]);
         }
         totalDistance += vec[0].getDistance(vec[vec.size()-1]);
         return totalDistance;
@@ -64,12 +64,6 @@ public:
             population.pop_back();
             fitnessValues.pop_back();
         }
-
-//        for(int i = 0; i < limit; i++)
-//        {
-//            cout << "Top " << limit << " Fitness Values: " << endl;
-//            cout << i+1 << " -> " << fitnessValues[i] << endl;
-//        }
     }
 
 
@@ -102,7 +96,7 @@ public:
     }
 
     //makes new babies
-    static void repopulate(vector<vector<int>> &population)
+    static void repopulate(vector<vector<int>> &population, int limit)
     {
         int counter = 0;
         int popSize = population.size();
@@ -111,13 +105,13 @@ public:
         {
             temp = population[counter];
             population.push_back(temp);
-            if(counter == 2)
+            if(counter == limit-1)
                 counter = 0;
             counter++;
         }
     }
 
-    static void mutation(vector<vector<int>> &population)
+    static void mutation(vector<vector<int>> &population, int mutationChance)
     {
         //generates mutation rate between 1 and 100
         //generates two random numbers within the chromosome and swaps them for each thing in population
@@ -125,7 +119,7 @@ public:
         for(unsigned int i = 0; i < population.size(); i++)
         {
             mutationRate = rand() % 100 + 1;
-            if(mutationRate <= 30)
+            if(mutationRate <= mutationChance)
             {
                 swap1 = rand() % population[i].size();
                 while(true)
@@ -192,14 +186,14 @@ public:
             //determine which chromosomes go to the next generation (selection)
             selection(population, fitnessValues, 3);
             //create new genes in every generation to make it random
-            repopulate(population);
+            repopulate(population, 3);
             //the ones that survive breed (crossover)
             for(unsigned int j = 0; j < population.size(); j+=2)
             {
                 crossover(population[j], population[j+1]);
             }
             //determine mutation (determine if it happens and who it happens too)
-            mutation(population);
+            mutation(population, 30);
 
         }
 
@@ -212,29 +206,172 @@ public:
         return "Genetic Algorithm";
     }
 
-
-
-    //tabu
-
-    static std::string Tabu(vector<Node> &vec, vector<int> &bestPath, float &bestDistance,  vector<vector<int>> &possiblePaths, vector<float> &possibleDistances)
+    template <typename t>
+    static bool contains(vector<t> vec, t id)
     {
-
+        for(unsigned int i = 0; i < vec.size(); i++)
+        {
+            if(vec[i] == id)
+                return true;
+        }
+        return false;
     }
 
-    //what it do:
-    //make matrix and shit
-    //do this all 5 times
-    //create greedy path
+    static void tabuSwap(vector<vector<int>> &population, vector<vector<int>> &tabuList)
+    {
+        int swap1, swap2, temp;
+        vector<int> tempVec, reverseVec;
+        for(unsigned int i = 1; i < population.size()-1; i++)
+        {
+
+            if(tabuList.size() == 0)
+            {
+                while(true)
+                {
+                    swap1 = rand() % population[i].size();
+                    swap2 = rand() % population[i].size();
+                    if(swap1 != swap2)
+                    {
+                        tempVec.clear();
+                        reverseVec.clear();
+                        tempVec.push_back(swap1);
+                        tempVec.push_back(swap2);
+                        reverseVec.push_back(swap2);
+                        reverseVec.push_back(swap1);
+                        tabuList.push_back(tempVec);
+                        tabuList.push_back(reverseVec);
+                        break;
+                    }
+                }
+                temp = population[i][swap1];
+                population[i][swap1] = population[i][swap2];
+                population[i][swap2] = temp;
+            }
+            else if (tabuList.size() < 90) // 10 P 2 (permutation)
+            {
+                while(true)
+                {
+                    swap1 = rand() % population[i].size();
+                    swap2 = rand() % population[i].size();
+                    if(swap1 != swap2)
+                    {
+                        tempVec.clear();
+                        reverseVec.clear();
+                        tempVec.push_back(swap1);
+                        tempVec.push_back(swap2);
+                        reverseVec.push_back(swap2);
+                        reverseVec.push_back(swap1);
+                        if(!contains(tabuList, tempVec))
+                        {
+                            tabuList.push_back(tempVec);
+                            tabuList.push_back(reverseVec);
+                            break;
+                        }
+                    }
+                }
+                temp = population[i][swap1];
+                population[i][swap1] = population[i][swap2];
+                population[i][swap2] = temp;
+            }
+        }
+    }
+
+    //tabu
+    static std::string Tabu(vector<Node> &vec, vector<int> &bestPath, float &bestDistance, vector<vector<int>> &possiblePaths, vector<float> &possibleDistances)
+    {
+        vector<int> tempVec;
+        bestDistance = INT8_MAX;
+        float totalDistance;
+
+        //sets up an adjacency matrix
+        float** matrix = new float*[vec.size()];
+        for(unsigned int i = 0; i < vec.size(); i++)
+        {
+            matrix[i] = new float[vec.size()];
+        }
+
+        //loads up the values of the matrix with the distances between the i and j nodes
+        for(unsigned int i = 0; i < vec.size(); i++)
+        {
+            for(unsigned int j = 0; j < vec.size(); j++)
+            {
+                matrix[i][j] = vec[i].getDistance(vec[j]);
+            }
+        }
+
+        //vector of ints representing the ids of all the nodes
+        vector<int> IDs;
+        for(unsigned int i = 0; i < vec.size(); i++)
+        {
+            IDs.push_back(i);
+        }
+        //what it do:
+
+        vector<vector<int>> population;
+        vector<vector<int>> tabuList;
+        vector<float> fitnessValues;
+
+        //do this all 5 times
+
+        //create greedy path
+
         //construct a path starting with node 1
+        tempVec.push_back(IDs[0]);
+        float shortestDistance = INT8_MAX;
+        int closestNode = 0;
+        int nodesLeft = IDs.size() - 1;
+        while(nodesLeft > 0)
+        {
+            shortestDistance = INT8_MAX;
+            for(int j = 0; j < IDs.size(); j++)
+            {
+                if(!contains(tempVec, j))
+                {
+                    if(matrix[tempVec[tempVec.size()-1]][j] < shortestDistance)
+                    {
+                        shortestDistance = matrix[tempVec[tempVec.size()-1]][j];
+                        closestNode = j;
+                    }
+                }
+            }
+            tempVec.push_back(closestNode);
+            nodesLeft--;
+        }
         //find the shortest path from the previous node to current node
         //do this on a loop
-    //create a neighbourhood based off the initial state
-    //clone it a lot and then mutate the clones (swap two nodes)
-    //then put swapped nodes in a tabu list
-    //go to next clone and swap two more nodes but check if they are on list and if they are then just don't
-    //after ur tabu list is done, compares all the neighbors to the initial state
 
+        for(unsigned int i = 0; i < 5; i++)
+        {
+            population.clear();
+            tabuList.clear();
+            fitnessValues.clear();
+            //create a neighbourhood based off the initial state
+            population.push_back(tempVec);
+            repopulate(population, 1);
+            //clone it a lot and then mutate the clones (swap two nodes)
+            //then put swapped nodes in a tabu list
+            //go to next clone and swap two more nodes but check if they are on list
+            tabuSwap(population, tabuList);
+            //after ur tabu list is done, compares all the neighbors to the initial state
 
+            for(unsigned int j = 0; j < population.size(); j++)
+            {
+                fitnessValues.push_back(getFitness(population[j], vec));
+            }
+
+            bestDistance = INT8_MAX;
+            for(unsigned int i = 0; i < population.size(); i++)
+            {
+                if(fitnessValues[i] < bestDistance)
+                {
+                    bestDistance = fitnessValues[i];
+                    bestPath = population[i];
+                }
+            }
+            tempVec = bestPath;
+        }
+        return "Tabu";
+    }
 };
 
 #endif // TSP_ALGO_H

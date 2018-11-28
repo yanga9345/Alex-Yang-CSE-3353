@@ -3,6 +3,7 @@
 Search::Search()
 {
     algorithms.push_back(TSP_Algo::GeneticAlgorithm);
+    algorithms.push_back(TSP_Algo::Tabu);
 }
 
 void Search::Load()
