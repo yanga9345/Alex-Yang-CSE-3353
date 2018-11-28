@@ -217,7 +217,23 @@ public:
         return false;
     }
 
-    static void tabuSwap(vector<vector<int>> &population, vector<vector<int>> &tabuList)
+    static int fac(int n)
+    {
+        int total = n;
+        while(n > 2)
+        {
+            n--;
+            total *= n;
+        }
+        return total;
+    }
+
+    static int perm(int n, int k)
+    {
+        return (fac(n)/fac(n-k));
+    }
+
+    static void tabuSwap(vector<vector<int>> &population, vector<vector<int>> &tabuList, vector<int> &vec)
     {
         int swap1, swap2, temp;
         vector<int> tempVec, reverseVec;
@@ -247,7 +263,7 @@ public:
                 population[i][swap1] = population[i][swap2];
                 population[i][swap2] = temp;
             }
-            else if (tabuList.size() < 90) // 10 P 2 (permutation)
+            else if (tabuList.size() < perm(vec.size(), 2)) //permutation
             {
                 while(true)
                 {
@@ -281,7 +297,7 @@ public:
     {
         vector<int> tempVec;
         bestDistance = INT8_MAX;
-        float totalDistance;
+        //float totalDistance;
 
         //sets up an adjacency matrix
         float** matrix = new float*[vec.size()];
@@ -351,7 +367,7 @@ public:
             //clone it a lot and then mutate the clones (swap two nodes)
             //then put swapped nodes in a tabu list
             //go to next clone and swap two more nodes but check if they are on list
-            tabuSwap(population, tabuList);
+            tabuSwap(population, tabuList, IDs);
             //after ur tabu list is done, compares all the neighbors to the initial state
 
             for(unsigned int j = 0; j < population.size(); j++)

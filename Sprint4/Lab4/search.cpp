@@ -59,10 +59,10 @@ void Search::Display()
     {
         for(unsigned int j = 0; j < possiblePaths[i].size(); j++)
         {
-            std::cout << possiblePaths[i][j];
+            std::cout << possiblePaths[i][j] + 1;
             std::cout << " -> ";
         }
-        std::cout << possiblePaths[i][0];
+        std::cout << possiblePaths[i][0] + 1;
         std::cout << endl;
         std::cout << "Path Length: " << setprecision(3) << possibleDistances[i] << endl;
     }
@@ -76,10 +76,10 @@ void Search::Stats()
     std::cout << "Best Path: ";
     for(unsigned int i = 0; i < bestPath.size(); i++)
     {
-        std::cout << bestPath[i];
+        std::cout << bestPath[i] + 1;
         std::cout << " -> ";
     }
-    std::cout << bestPath[0];
+    std::cout << bestPath[0] + 1;
     std::cout << endl;
     std::cout << "Best Path Length: " << bestDistance << endl << endl;
 
