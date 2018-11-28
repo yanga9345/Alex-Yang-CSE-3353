@@ -17,119 +17,6 @@ class TSP_Algo
 public:
     TSP_Algo();
 
-//    //brute force algorithm
-//    static string Brute_Force(vector<Node> &vec, vector<int> &bestPath, float &bestDistance, vector<vector<int>> &possiblePaths, vector<float> &possibleDistances)
-//    {
-//        vector<int> tempVec;
-//        float totalDistance;
-
-//        vector<int> IDs; //integer representation of my graph
-
-//        //sets IDs to the IDs of each node of my graph
-//        for(unsigned int i = 0; i < vec.size(); i++)
-//        {
-//            IDs.push_back(vec[i].getID() - 1);
-//        }
-
-//        //calculates the best path using brute force techniques
-//        do
-//        {
-//            totalDistance = 0;
-//            for(unsigned int i = 1; i < IDs.size(); i++)
-//            {
-//                totalDistance += vec[IDs[i-1]].getDistance(vec[IDs[i]]);
-//            }
-//            totalDistance += vec[0].getDistance(vec[vec.size()-1]);
-
-//            if(totalDistance < bestDistance)
-//            {
-//                bestDistance = totalDistance;
-//                bestPath.clear();
-//                for(unsigned int j = 0; j < IDs.size(); j++)
-//                {
-//                    bestPath.push_back(IDs[j] + 1);
-//                }
-//            }
-
-//            tempVec.clear();
-//            for(unsigned int i = 0; i < vec.size(); i++)
-//            {
-//                tempVec.push_back(vec[IDs[i]].getID());
-//            }
-//            possiblePaths.push_back(tempVec);
-//            possibleDistances.push_back(totalDistance);
-
-//        } while(std::next_permutation(IDs.begin() + 1, IDs.end()));
-
-//        return "Brute Force";
-//    }
-
-
-//    //dynamic programming
-//    static string Dynamic_Programming(vector<Node> &vec, vector<int> &bestPath, float &bestDistance,  vector<vector<int>> &possiblePaths, vector<float> &possibleDistances)
-//    {
-//        vector<int> tempVec;
-//        bestDistance = INT8_MAX;
-//        float totalDistance;
-
-//        //sets up an adjacency matrix
-//        float** matrix = new float*[vec.size()];
-//        for(unsigned int i = 0; i < vec.size(); i++)
-//        {
-//            matrix[i] = new float[vec.size()];
-//        }
-
-//        //loads up the values of the matrix with the distances between the i and j nodes
-//        for(unsigned int i = 0; i < vec.size(); i++)
-//        {
-//            for(unsigned int j = 0; j < vec.size(); j++)
-//            {
-//                matrix[i][j] = vec[i].getDistance(vec[j]);
-//            }
-//        }
-
-//        //vector of ints representing the ids of all the nodes
-//        vector<int> IDs;
-//        for(unsigned int i = 0; i < vec.size(); i++)
-//        {
-//            IDs.push_back(i);
-//        }
-
-
-//        do
-//        {
-//            totalDistance = 0;
-
-//            for(unsigned int i = 1; i < IDs.size(); i++)
-//            {
-//                totalDistance += matrix[IDs[i-1]][IDs[i]];
-//            }
-
-//            totalDistance += matrix[0][IDs.size()-1];
-
-//            if(totalDistance < bestDistance)
-//            {
-//                bestDistance = totalDistance;
-//                bestPath.clear();
-//                for(unsigned int i = 0; i < vec.size(); i++)
-//                {
-//                    bestPath.push_back(vec[IDs[i]].getID());
-//                }
-//            }
-
-//            tempVec.clear();
-//            for(unsigned int i = 0; i < vec.size(); i++)
-//            {
-//                tempVec.push_back(vec[IDs[i]].getID());
-//            }
-//            possiblePaths.push_back(tempVec);
-//            possibleDistances.push_back(totalDistance);
-
-//        } while(std::next_permutation(IDs.begin() + 1, IDs.end()));
-
-//        return "Dynamic Programming";
-//    }
-
     static vector<int> newChromosome(vector<int> in, vector<int> IDs)
     {
 
@@ -154,6 +41,7 @@ public:
     {
         float key;
         vector<int> popKey;
+        vector<int> temp;
         int i, j, size = fitnessValues.size(), popSize = population.size();
         for (i = 1; i < size; i++)
         {
@@ -173,15 +61,15 @@ public:
 
         for(int i = 0; i < 10-limit; i++)
         {
-            population.erase(population.end());
-            fitnessValues.erase(fitnessValues.end());
+            population.pop_back();
+            fitnessValues.pop_back();
         }
 
-        for(int i = 0; i < limit; i++)
-        {
-            cout << "Top " << limit << " Fitness Values: " << endl;
-            cout << i+1 << " -> " << fitnessValues[i] << endl;
-        }
+//        for(int i = 0; i < limit; i++)
+//        {
+//            cout << "Top " << limit << " Fitness Values: " << endl;
+//            cout << i+1 << " -> " << fitnessValues[i] << endl;
+//        }
     }
 
 
@@ -218,9 +106,11 @@ public:
     {
         int counter = 0;
         int popSize = population.size();
+        vector<int> temp;
         for(int i = 0; i < 10 - popSize; i++)
         {
-            population.push_back(population[counter]);
+            temp = population[counter];
+            population.push_back(temp);
             if(counter == 2)
                 counter = 0;
             counter++;
@@ -231,11 +121,24 @@ public:
     {
         //generates mutation rate between 1 and 100
         //generates two random numbers within the chromosome and swaps them for each thing in population
-        int mutationRate = rand() % 100 + 1;
-        int swap1, swap2;
-        if(mutationRate <= 30)
+        int mutationRate, swap1, swap2, temp;
+        for(unsigned int i = 0; i < population.size(); i++)
         {
-
+            mutationRate = rand() % 100 + 1;
+            if(mutationRate <= 30)
+            {
+                swap1 = rand() % population[i].size();
+                while(true)
+                {
+                    swap2 = rand() % population[i].size();
+                    if(swap1 != swap2)
+                        break;
+                }
+                temp = population[i][swap1];
+                population[i][swap1] = population[i][swap2];
+                population[i][swap2] = temp;
+                cout << "";
+            }
         }
     }
 
@@ -248,6 +151,7 @@ public:
         }
 
         vector<vector<int>> population;
+
         vector<int> chromosome1;
         vector<int> chromosome2;
         vector<int> chromosome3;
@@ -287,17 +191,23 @@ public:
             }
             //determine which chromosomes go to the next generation (selection)
             selection(population, fitnessValues, 3);
-            //the ones that survive breed (crossover)
+            //create new genes in every generation to make it random
             repopulate(population);
+            //the ones that survive breed (crossover)
             for(unsigned int j = 0; j < population.size(); j+=2)
             {
                 crossover(population[j], population[j+1]);
             }
             //determine mutation (determine if it happens and who it happens too)
-            //create new genes in every generation to make it random
+            mutation(population);
 
         }
-        cout << "lol" << endl;
+
+        bestPath = population[0];
+        bestDistance = fitnessValues[0];
+
+        possiblePaths = population;
+        possibleDistances = fitnessValues;
 
         return "Genetic Algorithm";
     }
@@ -305,6 +215,12 @@ public:
 
 
     //tabu
+
+    static std::string Tabu(vector<Node> &vec, vector<int> &bestPath, float &bestDistance,  vector<vector<int>> &possiblePaths, vector<float> &possibleDistances)
+    {
+
+    }
+
     //what it do:
     //make matrix and shit
     //do this all 5 times

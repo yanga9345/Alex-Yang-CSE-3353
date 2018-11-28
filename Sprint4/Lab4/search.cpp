@@ -2,8 +2,6 @@
 
 Search::Search()
 {
-    //algorithms.push_back(TSP_Algo::Brute_Force);
-    //algorithms.push_back(TSP_Algo::Dynamic_Programming);
     algorithms.push_back(TSP_Algo::GeneticAlgorithm);
 }
 

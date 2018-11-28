@@ -42,11 +42,11 @@ int main()
     for(unsigned int i = 0; i < 1; i++)
     {
         algo.Load();
-        algo.Select(i);
+        algo.Select(0);
         algo.Execute();
         //algo.Display(); //uncomment to see every path tested
-        //algo.Save();
-        //algo.Stats();
+        algo.Save();
+        algo.Stats();
     }
 
     return 0;
