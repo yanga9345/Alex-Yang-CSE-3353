@@ -54,7 +54,7 @@ void Search::Execute()
 //prints the sorted vector
 void Search::Display()
 {
-    std::cout << "\n\nPaths: " << endl;
+    std::cout << "\nPaths: " << endl;
     for(unsigned int i = 0; i < possiblePaths.size(); i++)
     {
         for(unsigned int j = 0; j < possiblePaths[i].size(); j++)
@@ -65,6 +65,7 @@ void Search::Display()
         std::cout << possiblePaths[i][0] + 1;
         std::cout << endl;
         std::cout << "Path Length: " << setprecision(3) << possibleDistances[i] << endl;
+        std::cout << endl;
     }
 }
 

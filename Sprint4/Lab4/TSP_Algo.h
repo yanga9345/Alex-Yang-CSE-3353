@@ -41,8 +41,7 @@ public:
     {
         float key;
         vector<int> popKey;
-        vector<int> temp;
-        int i, j, size = fitnessValues.size(), popSize = population.size();
+        int i, j, size = fitnessValues.size();
         for (i = 1; i < size; i++)
         {
             key = fitnessValues[i];
@@ -206,6 +205,7 @@ public:
         return "Genetic Algorithm";
     }
 
+    //checks if a vector contains an element
     template <typename t>
     static bool contains(vector<t> vec, t id)
     {
@@ -217,6 +217,7 @@ public:
         return false;
     }
 
+    //calculates the factorial of an int
     static int fac(int n)
     {
         int total = n;
@@ -228,11 +229,16 @@ public:
         return total;
     }
 
+    //calculates the permutation of two ints
     static int perm(int n, int k)
     {
-        return (fac(n)/fac(n-k));
+        if(n < 100)
+            return (fac(n)/fac(n-k));
+        else
+            return 1000*n; //soft cap so program doesn't crash
     }
 
+    //does the swapping in tabu search
     static void tabuSwap(vector<vector<int>> &population, vector<vector<int>> &tabuList, vector<int> &vec)
     {
         int swap1, swap2, temp;
@@ -263,7 +269,7 @@ public:
                 population[i][swap1] = population[i][swap2];
                 population[i][swap2] = temp;
             }
-            else if (tabuList.size() < perm(vec.size(), 2)) //permutation
+            else if (tabuList.size() < perm(vec.size(), 2)) //permutation perm(vec.size(), 2)
             {
                 while(true)
                 {
@@ -297,7 +303,6 @@ public:
     {
         vector<int> tempVec;
         bestDistance = INT8_MAX;
-        //float totalDistance;
 
         //sets up an adjacency matrix
         float** matrix = new float*[vec.size()];
@@ -321,7 +326,6 @@ public:
         {
             IDs.push_back(i);
         }
-        //what it do:
 
         vector<vector<int>> population;
         vector<vector<int>> tabuList;

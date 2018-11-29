@@ -57,10 +57,10 @@ void FileHandler::outputResults(string algoName, vector<int> bestPath, float bes
     outFile << "Best Path: ";
     for(unsigned int i = 0; i < bestPath.size(); i++)
     {
-        outFile << bestPath[i];
+        outFile << bestPath[i] + 1;
         outFile << " -> ";
     }
-    outFile << bestPath[0];
+    outFile << bestPath[0] + 1;
     outFile << endl;
     outFile << "Best Path Length: " << setprecision(3) << bestDistance << endl << endl;
 
