@@ -19,7 +19,7 @@ using namespace std;
 void test()
 {
     Search algo;
-    for(int i = 0; i < 9; i++)
+    for(int i = 0; i < 7; i++)
     {
         cout << "Number of Nodes: " << i+4 << endl << endl;
         for(unsigned int j = 0; j < 2; j++)
@@ -37,17 +37,17 @@ void test()
 //runs the whole program
 int main()
 {
-    //test();
-    Search algo;
-    for(unsigned int i = 0; i < 2; i++)
-    {
-        algo.Load();
-        algo.Select(i);
-        algo.Execute();
-        //algo.Display(); //uncomment to see every path tested
-        algo.Save();
-        algo.Stats();
-    }
+    test();
+//    Search algo;
+//    for(unsigned int i = 0; i < 2; i++)
+//    {
+//        algo.Load();
+//        algo.Select(i);
+//        algo.Execute();
+//        //algo.Display(); //uncomment to see every path tested
+//        algo.Save();
+//        algo.Stats();
+//    }
 
     return 0;
 }

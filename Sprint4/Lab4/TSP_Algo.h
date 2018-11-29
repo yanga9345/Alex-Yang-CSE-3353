@@ -173,6 +173,8 @@ public:
         }
 
         vector<float> fitnessValues;
+        int numSurvivors = 3; //1-10 determines the number of neighbors that
+        int mutationChance = 30; //0-100
 
         for(unsigned int i = 0; i < 5; i++)
         {
@@ -185,14 +187,14 @@ public:
             //determine which chromosomes go to the next generation (selection)
             selection(population, fitnessValues, 3);
             //create new genes in every generation to make it random
-            repopulate(population, 3);
+            repopulate(population, numSurvivors);
             //the ones that survive breed (crossover)
             for(unsigned int j = 0; j < population.size(); j+=2)
             {
                 crossover(population[j], population[j+1]);
             }
             //determine mutation (determine if it happens and who it happens too)
-            mutation(population, 30);
+            mutation(population, mutationChance);
 
         }
 
@@ -241,7 +243,7 @@ public:
     //does the swapping in tabu search
     static void tabuSwap(vector<vector<int>> &population, vector<vector<int>> &tabuList, vector<int> &vec)
     {
-        int swap1, swap2, temp;
+        int swap1, swap2, temp, TabuListMaxSize = perm(vec.size(), 2);
         vector<int> tempVec, reverseVec;
         for(unsigned int i = 1; i < population.size()-1; i++)
         {
@@ -269,7 +271,7 @@ public:
                 population[i][swap1] = population[i][swap2];
                 population[i][swap2] = temp;
             }
-            else if (tabuList.size() < perm(vec.size(), 2)) //permutation perm(vec.size(), 2)
+            else if (tabuList.size() < TabuListMaxSize) //permutation perm(vec.size(), 2)
             {
                 while(true)
                 {
