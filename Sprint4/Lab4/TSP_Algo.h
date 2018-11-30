@@ -66,29 +66,32 @@ public:
     }
 
 
-    static void crossover(vector<int> &p1, vector<int> &p2)
+    static void crossover(vector<int> &p1, vector<int> &p2, int crossRate)
     {
         int v1, temp1, temp2;
-        //generate number within a parent
-        v1 = rand() % p1.size();
-        //go to that location on each parent
-        temp1 = p1[v1];
-        temp2 = p2[v1];
-        p1[v1] = p2[v1];
-        p2[v1] = temp1;
-        //swap the locations
-        //search each parent and find out where the duplicates are and replace them with whatever was missing
-        for(unsigned int j = 0; j < p1.size(); j++)
+        for(unsigned int i = 0; i < crossRate; i++)
         {
-            if(j != v1)
+            //generate number within a parent
+            v1 = rand() % p1.size();
+            //go to that location on each parent
+            temp1 = p1[v1];
+            temp2 = p2[v1];
+            p1[v1] = p2[v1];
+            p2[v1] = temp1;
+            //swap the locations
+            //search each parent and find out where the duplicates are and replace them with whatever was missing
+            for(unsigned int j = 0; j < p1.size(); j++)
             {
-                if(p1[j] == temp2)
+                if(j != v1)
                 {
-                    p1[j] = temp1;
-                }
-                if(p2[j] == temp1)
-                {
-                    p2[j] = temp2;
+                    if(p1[j] == temp2)
+                    {
+                        p1[j] = temp1;
+                    }
+                    if(p2[j] == temp1)
+                    {
+                        p2[j] = temp2;
+                    }
                 }
             }
         }
@@ -174,6 +177,7 @@ public:
 
         vector<float> fitnessValues;
         int numSurvivors = 3; //1-10 determines the number of neighbors that
+        int crossoverRate = 1; //how many times you want the algorithm to crossover per chromosome
         int mutationChance = 30; //0-100
 
         for(unsigned int i = 0; i < 5; i++)
@@ -191,7 +195,7 @@ public:
             //the ones that survive breed (crossover)
             for(unsigned int j = 0; j < population.size(); j+=2)
             {
-                crossover(population[j], population[j+1]);
+                crossover(population[j], population[j+1], crossoverRate);
             }
             //determine mutation (determine if it happens and who it happens too)
             mutation(population, mutationChance);
