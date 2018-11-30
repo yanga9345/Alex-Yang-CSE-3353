@@ -23,7 +23,7 @@ void test()
     for(int i = 4; i < 11; i+=6)
     {
         cout << "Number of Nodes: " << i << endl << endl;
-        for(unsigned int j = 0; j < 1; j++)
+        for(unsigned int j = 0; j < 2; j++)
         {
             algo.Load(i);
             algo.Select(j);
@@ -34,10 +34,10 @@ void test()
         cout << "------------------------------------------" << endl << endl;
     }
 
-    for(int i = 100; i < 501; i+=100)
+    for(int i = 11; i < 101; i+=1)
     {
         cout << "Number of Nodes: " << i << endl << endl;
-        for(unsigned int j = 0; j < 1; j++)
+        for(unsigned int j = 0; j < 2; j++)
         {
             algo.Load(i);
             algo.Select(j);

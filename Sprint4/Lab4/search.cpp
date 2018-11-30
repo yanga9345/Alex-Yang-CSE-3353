@@ -84,8 +84,8 @@ void Search::Stats()
     std::cout << endl;
     std::cout << "Best Path Length: " << bestDistance << endl << endl;
 
-    cout << "Run Time: " << setprecision(3) << runTime  << " seconds " << endl;
-    cout << endl << endl;
+    std::cout << "Run Time: " << setprecision(3) << runTime  << " seconds " << endl;
+    std::cout << endl << endl;
 }
 
 //outputs sorted vectors to text files

@@ -176,11 +176,16 @@ public:
         }
 
         vector<float> fitnessValues;
+
+        /**
+          * CHANGE THESE TO TRY DIFFFERENT VARIATIONS OF MY GENETIC ALGORITHM
+         **/
+        int numGenerations = 5; //determines the number of generations to simulate
         int numSurvivors = 3; //1-10 determines the number of neighbors that
         int crossoverRate = 1; //how many times you want the algorithm to crossover per chromosome
         int mutationChance = 30; //0-100
 
-        for(unsigned int i = 0; i < 5; i++)
+        for(unsigned int i = 0; i < numGenerations; i++)
         {
             //determine fitness value of each chromosome (distance)
             fitnessValues.clear();
@@ -238,10 +243,11 @@ public:
     //calculates the permutation of two ints
     static int perm(int n, int k)
     {
-        if(n < 100)
+        if(n < 35)
             return (fac(n)/fac(n-k));
         else
-            return 1000*n; //soft cap so program doesn't crash
+            return (fac(35)/fac(35-k)); //soft cap so program doesn't crash
+            //return 1000*n;
     }
 
     //does the swapping in tabu search

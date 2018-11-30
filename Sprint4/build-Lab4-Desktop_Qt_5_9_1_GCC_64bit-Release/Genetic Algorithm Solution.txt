@@ -1,8 +1,8 @@
 Genetic Algorithm
 
-Best Path: 4 -> 1 -> 2 -> 3 -> 4
-Best Path Length: 50.7
+Best Path: 6 -> 10 -> 3 -> 7 -> 4 -> 1 -> 8 -> 5 -> 9 -> 2 -> 6
+Best Path Length: 91.6
 
-Run Time: 0.000121 seconds 
+Run Time: 9.39e-05 seconds 
 
 

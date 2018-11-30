@@ -1,8 +1,8 @@
 Tabu
 
-Best Path: 3 -> 2 -> 1 -> 4 -> 3
-Best Path Length: 50.7
+Best Path: 1 -> 5 -> 8 -> 10 -> 2 -> 7 -> 6 -> 4 -> 9 -> 3 -> 1
+Best Path Length: 72.2
 
-Run Time: 5.47e-05 seconds 
+Run Time: 0.000316 seconds 
 
 
