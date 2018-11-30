@@ -19,12 +19,27 @@ using namespace std;
 void test()
 {
     Search algo;
-    for(int i = 0; i < 7; i++)
+
+    for(int i = 4; i < 11; i+=6)
     {
-        cout << "Number of Nodes: " << i+4 << endl << endl;
+        cout << "Number of Nodes: " << i << endl << endl;
         for(unsigned int j = 0; j < 2; j++)
         {
-            algo.Load(4+i);
+            algo.Load(i);
+            algo.Select(j);
+            algo.Execute();
+            algo.Stats();
+        }
+
+        cout << "------------------------------------------" << endl << endl;
+    }
+
+    for(int i = 100; i < 501; i+=100)
+    {
+        cout << "Number of Nodes: " << i << endl << endl;
+        for(unsigned int j = 0; j < 2; j++)
+        {
+            algo.Load(i);
             algo.Select(j);
             algo.Execute();
             algo.Stats();
