@@ -2,8 +2,8 @@
 
 Search::Search()
 {
-    algorithms.push_back(TSP_Algo::GeneticAlgorithm);
-    algorithms.push_back(TSP_Algo::Tabu);
+    algorithms.push_back(TSP_Algo::SA);
+    //algorithms.push_back(TSP_Algo::Tabu);
 }
 
 void Search::Load()
@@ -59,10 +59,10 @@ void Search::Display()
     {
         for(unsigned int j = 0; j < possiblePaths[i].size(); j++)
         {
-            std::cout << possiblePaths[i][j] + 1;
+            std::cout << possiblePaths[i][j];
             std::cout << " -> ";
         }
-        std::cout << possiblePaths[i][0] + 1;
+        std::cout << possiblePaths[i][0];
         std::cout << endl;
         std::cout << "Path Length: " << setprecision(3) << possibleDistances[i] << endl;
         std::cout << endl;
@@ -74,14 +74,14 @@ void Search::Stats()
 {
     cout << algoName << endl << endl;
 
-    std::cout << "Best Path: ";
-    for(unsigned int i = 0; i < bestPath.size(); i++)
-    {
-        std::cout << bestPath[i] + 1;
-        std::cout << " -> ";
-    }
-    std::cout << bestPath[0] + 1;
-    std::cout << endl;
+//    std::cout << "Best Path: ";
+//    for(unsigned int i = 0; i < bestPath.size(); i++)
+//    {
+//        std::cout << bestPath[i];
+//        std::cout << " -> ";
+//    }
+//    std::cout << bestPath[0];
+//    std::cout << endl;
     std::cout << "Best Path Length: " << bestDistance << endl << endl;
 
     std::cout << "Run Time: " << setprecision(3) << runTime  << " seconds " << endl;

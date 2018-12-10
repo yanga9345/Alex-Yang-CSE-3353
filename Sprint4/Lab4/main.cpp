@@ -34,7 +34,7 @@ void test()
         cout << "------------------------------------------" << endl << endl;
     }
 
-    for(int i = 11; i < 101; i+=1)
+    for(int i = 10; i < 101; i+=10)
     {
         cout << "Number of Nodes: " << i << endl << endl;
         for(unsigned int j = 0; j < 2; j++)
@@ -52,17 +52,17 @@ void test()
 //runs the whole program
 int main()
 {
-    //test();   //uncomment to see how I obtained the data for the excel sheet
-    Search algo;
-    for(unsigned int i = 0; i < 2; i++)
-    {
-        algo.Load();
-        algo.Select(i);
-        algo.Execute();
-        //algo.Display(); //uncomment to see every path tested
-        algo.Save();
-        algo.Stats();
-    }
+    test();   //uncomment to see how I obtained the data for the excel sheet
+//    Search algo;
+//    for(unsigned int i = 0; i < 2; i++)
+//    {
+//        algo.Load();
+//        algo.Select(i);
+//        algo.Execute();
+//        //algo.Display(); //uncomment to see every path tested
+//        algo.Save();
+//        algo.Stats();
+//    }
 
     return 0;
 }

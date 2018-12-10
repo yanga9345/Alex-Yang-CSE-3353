@@ -74,14 +74,14 @@ void Search::Stats()
 {
     cout << algoName << endl << endl;
 
-    std::cout << "Best Path: ";
-    for(unsigned int i = 0; i < bestPath.size(); i++)
-    {
-        std::cout << bestPath[i] + 1;
-        std::cout << " -> ";
-    }
-    std::cout << bestPath[0] + 1;
-    std::cout << endl;
+//    std::cout << "Best Path: ";
+//    for(unsigned int i = 0; i < bestPath.size(); i++)
+//    {
+//        std::cout << bestPath[i] + 1;
+//        std::cout << " -> ";
+//    }
+//    std::cout << bestPath[0] + 1;
+//    std::cout << endl;
     std::cout << "Best Path Length: " << bestDistance << endl << endl;
 
     std::cout << "Run Time: " << setprecision(3) << runTime  << " seconds " << endl;

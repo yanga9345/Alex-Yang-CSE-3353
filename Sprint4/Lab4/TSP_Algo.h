@@ -257,7 +257,6 @@ public:
         vector<int> tempVec, reverseVec;
         for(unsigned int i = 1; i < population.size()-1; i++)
         {
-
             if(tabuList.size() == 0)
             {
                 while(true)
