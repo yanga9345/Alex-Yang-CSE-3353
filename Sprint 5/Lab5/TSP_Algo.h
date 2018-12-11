@@ -226,14 +226,74 @@ public:
     static std::string PSO(std::vector<Node> &vec, std::vector<int> &bestPath, float &bestDistance, std::vector<std::vector<int>> &possiblePaths, std::vector<float> &possibleDistances)
     {
         vector<vector<int>> routes, personalBests;
-        vector<double> personalBestDistances;
+        vector<double> fitnessValues, personalBestDistances;
         vector<int> tempVec;
-        int swap;
+        vector<vector<int>> velocities;
+        //vector<double> velocities;
+
+        int swap, c1 = 2, c2 = 2;
+        double temp;
+
+
+//        //allows the particles to follow the PSO algorithm
+//        for(unsigned int day = 0; day < 10; day++)
+//        {
+//            for(int i = 0; i < size; i++)
+//            {
+//                //if route is the closest route, introduce some random change
+//                if(routes[i] == bestPath)
+//                {
+//                    routes[i] = generateNeighbor(routes[i]);
+//                }
+//                //if route is not the closest route, change the
+//                //  route to be more similar to the global best
+//                //  then make it more similar to the local best
+//                else
+//                {
+//                    //moves the route one node closer to its personalbest and to the globalbest route
+//                    if(routes[i] != personalBests[i])
+//                    {
+//                        for(unsigned int j = 0; j < routes[i].size(); j++)
+//                        {
+//                            if(routes[i][j] != personalBests[i][j])
+//                            {
+//                                routes[i][j] = personalBests[i][j];
+//                                break;
+//                            }
+//                        }
+//                        if(routes[i] != bestPath)
+//                        {
+//                            for(unsigned int j = 0; j < routes[i].size(); j++)
+//                            {
+//                                if(routes[i][j] != bestPath[i][j])
+//                                {
+//                                    routes[i][j] = bestPath[i][j];
+//                                    break;
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//                possiblePaths.push_back(routes[i]);
+//                temp = getFitness(routes[i], vec);
+//                if(temp < bestDistance)
+//                {
+//                    bestPath = routes[i];
+//                    bestDistance = temp;
+//                }
+//                if(temp < personalBestDistances[i])
+//                {
+//                    personalBestDistances[i] = temp;
+//                    personalBests[i] = routes[i];
+//                }
+//            }
+//        }
 
         bestDistance = INT8_MAX;
 
+        int numParticles = 3;
         //initializes the swarm
-        for(unsigned int i = 0; i < 3; i++)
+        for(unsigned int i = 0; i < numParticles; i++)
         {
             tempVec.clear();
             for(unsigned int i = 0; i < vec.size(); i++)
@@ -255,67 +315,52 @@ public:
             }
             routes.push_back(tempVec);
             personalBests.push_back(tempVec);
-            personalBestDistances.push_back(getFitness(tempVec, vec));
+            temp = getFitness(tempVec, vec);
+            personalBestDistances.push_back(temp);
+            fitnessValues.push_back(temp);
+            for(unsigned int j = 0; j < routes[i].size(); j++)
+                velocities[i].push_back(0);
         }
 
         int size = routes.size();
-        double temp;
 
-        //allows the particles to follow the PSO algorithm
-        for(unsigned int day = 0; day < 10; day++)
+        //    For each particle
+        for(unsigned int i = 0; i < routes.size(); i++)
         {
-            for(int i = 0; i < size; i++)
+        //        Calculate fitness value
+            temp = getFitness(routes[i], vec);
+        //        If the fitness value is better than the best fitness value (pBest) in history
+            if(temp > bestDistance)
             {
-                //if route is the closest route, introduce some random change
-                if(routes[i] == bestPath)
-                {
-                    routes[i] = generateNeighbor(routes[i]);
-                }
-                //if route is not the closest route, change the
-                //  route to be more similar to the global best
-                //  then make it more similar to the local best
-                else
-                {
-                    //moves the route one node closer to its personalbest and to the globalbest route
-                    if(routes[i] != personalBests[i])
-                    {
-                        for(unsigned int j = 0; j < routes[i].size(); j++)
-                        {
-                            if(routes[i][j] != personalBests[i][j])
-                            {
-                                routes[i][j] = personalBests[i][j];
-                                break;
-                            }
-                        }
-                        if(routes[i] != bestPath)
-                        {
-                            for(unsigned int j = 0; j < routes[i].size(); j++)
-                            {
-                                if(routes[i][j] != bestPath[i][j])
-                                {
-                                    routes[i][j] = bestPath[i][j];
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-                possiblePaths.push_back(routes[i]);
-                temp = getFitness(routes[i], vec);
-                if(temp < bestDistance)
-                {
-                    bestPath = routes[i];
-                    bestDistance = temp;
-                }
-                if(temp < personalBestDistances[i])
-                {
-                    personalBestDistances[i] = temp;
-                    personalBests[i] = routes[i];
-                }
+        //            set current value as the new pBest
+                personalBestDistances[i] = temp;
+                personalBests[i] = routes[i];
+            }
+            possiblePaths.push_back(routes[i]);
+            possibleDistances.push_back(temp);
+        }
+        //    Choose the particle with the best fitness value of all the particles as the gBest
+        for(unsigned int i = 0; i < routes.size(); i++)
+        {
+            if(fitnessValues[i] < bestDistance)
+            {
+                bestPath = routes[i];
+                bestDistance = fitnessValues[i];
             }
         }
-
-
+        //    For each particle
+        for(unsigned int i = 0; i < routes.size(); i++)
+        {
+            for(unsigned int j = 0; j < velocities[i].size(); j++)
+            {
+            //       Calculate particle velocity according equation (a)
+                velocities[i][j] = velocities[i][j] + c1 * rand() *
+                        (personalBestDistances[i] - fitnessValues[i]) + c2 * rand() *
+                        (bestDistance - fitnessValues[i]);
+            //       Update particle position according equation (b)
+                routes[i][j] += velocities[i][j];
+            }
+        }
         return "Particle Swarm Optimization";
     }
 };
