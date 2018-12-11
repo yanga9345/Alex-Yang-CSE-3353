@@ -223,7 +223,7 @@ public:
         return "Simulated Annealing";
     }
 
-    static std::string PSO(vector<Node> &vec, vector<int> &bestPath, float &bestDistance, vector<vector<int>> &possiblePaths, vector<float> &possibleDistances)
+    static std::string PSO(std::vector<Node> &vec, std::vector<int> &bestPath, float &bestDistance, std::vector<std::vector<int>> &possiblePaths, std::vector<float> &possibleDistances)
     {
         vector<vector<int>> routes, personalBests;
         vector<double> personalBestDistances;
@@ -259,12 +259,59 @@ public:
         }
 
         int size = routes.size();
+        double temp;
 
+        //allows the particles to follow the PSO algorithm
         for(unsigned int day = 0; day < 10; day++)
         {
             for(int i = 0; i < size; i++)
             {
-
+                //if route is the closest route, introduce some random change
+                if(routes[i] == bestPath)
+                {
+                    routes[i] = generateNeighbor(routes[i]);
+                }
+                //if route is not the closest route, change the
+                //  route to be more similar to the global best
+                //  then make it more similar to the local best
+                else
+                {
+                    //moves the route one node closer to its personalbest and to the globalbest route
+                    if(routes[i] != personalBests[i])
+                    {
+                        for(unsigned int j = 0; j < routes[i].size(); j++)
+                        {
+                            if(routes[i][j] != personalBests[i][j])
+                            {
+                                routes[i][j] = personalBests[i][j];
+                                break;
+                            }
+                        }
+                        if(routes[i] != bestPath)
+                        {
+                            for(unsigned int j = 0; j < routes[i].size(); j++)
+                            {
+                                if(routes[i][j] != bestPath[i][j])
+                                {
+                                    routes[i][j] = bestPath[i][j];
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                possiblePaths.push_back(routes[i]);
+                temp = getFitness(routes[i], vec);
+                if(temp < bestDistance)
+                {
+                    bestPath = routes[i];
+                    bestDistance = temp;
+                }
+                if(temp < personalBestDistances[i])
+                {
+                    personalBestDistances[i] = temp;
+                    personalBests[i] = routes[i];
+                }
             }
         }
 
