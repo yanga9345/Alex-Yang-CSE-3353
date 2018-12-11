@@ -225,24 +225,50 @@ public:
 
     static std::string PSO(vector<Node> &vec, vector<int> &bestPath, float &bestDistance, vector<vector<int>> &possiblePaths, vector<float> &possibleDistances)
     {
-        vector<vector<int>> routes;
-        for(unsigned int i = 0; i < vec.size(); i++)
-        {
-            best.push_back(i+1);
-        }
-        //First, generate a random solution
-        std::random_shuffle(best.begin(), best.end());
+        vector<vector<int>> routes, personalBests;
+        vector<double> personalBestDistances;
+        vector<int> tempVec;
+        int swap;
 
-        //ensures that the algorithm starts at Node 1
-        for(unsigned int i = 0; i < best.size(); i++)
+        bestDistance = INT8_MAX;
+
+        //initializes the swarm
+        for(unsigned int i = 0; i < 3; i++)
         {
-            if(best[i] == 1)
+            tempVec.clear();
+            for(unsigned int i = 0; i < vec.size(); i++)
             {
-                swap = best[0];
-                best[0] = 1;
-                best[i] = swap;
+                tempVec.push_back(i+1);
+            }
+            //First, generate a random solution
+            std::random_shuffle(tempVec.begin(), tempVec.end());
+
+            //ensures that the algorithm starts at Node 1
+            for(unsigned int i = 0; i < tempVec.size(); i++)
+            {
+                if(tempVec[i] == 1)
+                {
+                    swap = tempVec[0];
+                    tempVec[0] = 1;
+                    tempVec[i] = swap;
+                }
+            }
+            routes.push_back(tempVec);
+            personalBests.push_back(tempVec);
+            personalBestDistances.push_back(getFitness(tempVec, vec));
+        }
+
+        int size = routes.size();
+
+        for(unsigned int day = 0; day < 10; day++)
+        {
+            for(int i = 0; i < size; i++)
+            {
+
             }
         }
+
+
         return "Particle Swarm Optimization";
     }
 };
