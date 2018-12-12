@@ -3,6 +3,6 @@ Simulated Annealing
 Best Path: 2 -> 5 -> 3 -> 4 -> 6 -> 2
 Best Path Length: 45.8
 
-Run Time: 0.0704 seconds 
+Run Time: 0.127 seconds 
 
 
