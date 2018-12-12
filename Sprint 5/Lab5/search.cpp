@@ -3,7 +3,9 @@
 Search::Search()
 {
     algorithms.push_back(TSP_Algo::SA);
-    //algorithms.push_back(TSP_Algo::Tabu);
+    algorithms.push_back(TSP_Algo::PSO);
+    algorithms.push_back(TSP_Algo::Brute_Force);
+    algorithms.push_back(TSP_Algo::Dynamic_Programming);
 }
 
 void Search::Load()

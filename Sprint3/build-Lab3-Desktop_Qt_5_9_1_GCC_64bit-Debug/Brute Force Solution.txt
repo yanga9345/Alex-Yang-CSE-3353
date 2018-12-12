@@ -1,8 +1,2 @@
 Brute Force
 
-Best Path: 1 -> 5 -> 4 -> 2 -> 3 -> 1
-Best Path Length: 28.6
-
-Run Time: 7.91e-05 seconds 
-
-

@@ -37,17 +37,17 @@ void test()
 //runs the whole program
 int main()
 {
-    test();
-//    Search algo;
-//    for(unsigned int i = 0; i < 2; i++)
-//    {
-//        algo.Load();
-//        algo.Select(i);
-//        algo.Execute();
-//        //algo.Display(); //uncomment to see every path tested
-//        algo.Save();
-//        algo.Stats();
-//    }
+//    test();
+    Search algo;
+    for(unsigned int i = 0; i < 2; i++)
+    {
+        algo.Load();
+        algo.Select(i);
+        algo.Execute();
+        //algo.Display(); //uncomment to see every path tested
+        //algo.Save();
+        algo.Stats();
+    }
 
     return 0;
 }
