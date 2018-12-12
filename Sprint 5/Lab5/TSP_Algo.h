@@ -242,12 +242,14 @@ public:
 
     static std::string SA(vector<Node> &vec, vector<int> &bestPath, float &bestDistance, vector<vector<int>> &possiblePaths, vector<float> &possibleDistances)
     {
-        vector<int> best, temp;
+        vector<int> best, temp, globalBest;
         int swap, acceptanceProb = 20, acceptancefactor;
-        double fitness, tempfitness, temperature = 1, e = 2.718;
+        float fitness, tempfitness, globalBestDistance, temperature = 1, e = 2.718;
+
+        bool failed = true;
 
         //change alpha to change how the temperature is calculated
-        double alpha = 0.90; //temperature is multiplied by this number every iteration
+        float alpha = 0.90; //temperature is multiplied by this number every iteration
 
         for(unsigned int i = 0; i < vec.size(); i++)
         {
@@ -268,10 +270,10 @@ public:
         }
         //Calculate its cost using some cost function you've defined
         fitness = getFitness(best, vec);
-        bestPath = best;
-        bestDistance = fitness;
+        globalBest = best;
+        globalBestDistance = fitness;
 
-        for(unsigned int i = 0; i < vec.size() * 10000; i++)
+        for(unsigned int i = 0; i < 100000; i++)
         {
             //Generate a random neighboring solution
             temp = generateNeighbor(best);
@@ -297,12 +299,22 @@ public:
                 }
             }
             //Repeat steps 3-5 above until an acceptable solution is found or you reach some maximum number of iterations.
-            if(fitness < bestDistance)
+            if(fitness < globalBestDistance)
             {
                 bestPath = best;
-                bestDistance = fitness;
+                globalBestDistance = fitness;
             }
             temperature *= alpha; //temperature is decreased every iteration
+            if(globalBest == bestPath)
+            {
+                failed = false;
+                break;
+            }
+        }
+        if(failed)
+        {
+            bestPath = globalBest;
+            bestDistance = globalBestDistance;
         }
         return "Simulated Annealing";
     }
@@ -310,18 +322,19 @@ public:
     static std::string PSO(std::vector<Node> &vec, std::vector<int> &bestPath, float &bestDistance, std::vector<std::vector<int>> &possiblePaths, std::vector<float> &possibleDistances)
     {
         vector<vector<int>> routes, personalBests;
-        vector<double> fitnessValues, personalBestDistances;
-        vector<int> tempVec, velocities;
+        vector<float> fitnessValues, personalBestDistances;
+        vector<int> tempVec, velocities, globalBest;
 
         int swap;
-        double temp;
-        bestDistance = INT8_MAX;
+        float temp, globalBestDistance = INT8_MAX;
+        globalBestDistance = INT8_MAX;
+        bool failed = true;
 
         /**
          * change these variables to alter PSO algorithm
          */
         int numParticles = 100;
-        int numOfIterations = vec.size() * vec.size() * vec.size();
+        int maxIterations = 10000;
         int c1 = 2, c2 = 2;
         int maxVelocity = 100;
 
@@ -353,10 +366,18 @@ public:
             fitnessValues.push_back(temp);
             velocities.push_back(0);
         }
+        for(unsigned int i = 0; i < numParticles; i++)
+        {
+            if(fitnessValues[i] < globalBestDistance)
+            {
+                globalBest = routes[i];
+                globalBestDistance = fitnessValues[i];
+            }
+        }
 
         int size = routes[0].size();
 
-        for(unsigned int days = 0; days < numOfIterations; days++)
+        for(unsigned int days = 0; days < maxIterations; days++)
         {
             //    For each particle
             for(unsigned int i = 0; i < numParticles; i++)
@@ -364,7 +385,7 @@ public:
             //        Calculate fitness value
                 temp = getFitness(routes[i], vec);
             //        If the fitness value is better than the best fitness value (pBest) in history
-                if(temp > bestDistance)
+                if(temp > globalBestDistance)
                 {
             //            set current value as the new pBest
                     personalBestDistances[i] = temp;
@@ -376,31 +397,35 @@ public:
             //    Choose the particle with the best fitness value of all the particles as the gBest
             for(unsigned int i = 0; i < numParticles; i++)
             {
-                if(fitnessValues[i] < bestDistance)
+                if(fitnessValues[i] < globalBestDistance)
                 {
-                    bestPath = routes[i];
-                    bestDistance = fitnessValues[i];
+                    globalBest = routes[i];
+                    globalBestDistance = fitnessValues[i];
                 }
             }
             //    For each particle
             for(unsigned int i = 0; i < numParticles; i++)
             {
-            //       Calculate particle velocity according equation (a)
-                velocities[i] = velocities[i] + c1 * rand() *
-                        (personalBestDistances[i] - fitnessValues[i]) + c2 * rand() *
-                        (bestDistance - fitnessValues[i]);
+                //formula to calculate velocities based on learning factor
+                velocities[i] = velocities[i] + c1 *
+                        (fitnessValues[i]-personalBestDistances[i]) + c2 *
+                        (fitnessValues[i]-globalBestDistance);
                 if(velocities[i] > maxVelocity)
                     velocities[i] = maxVelocity;
-            //       Update particle position according equation (b)
-                //routes[i] += velocities[i];
-                if(routes[i] != bestPath)
+                else if(velocities[i] < maxVelocity * -1)
+                    velocities[i] = maxVelocity * -1;
+                if(routes[i] != globalBest)
                 {
                     if(routes[i] != personalBests[i])
                         crossover(routes[i], personalBests[i], 1);
-                    if(velocities[i] > 0)
-                        crossover(routes[i], bestPath, 1);
-                    else
-                        crossover(routes[i], bestPath, 3);
+
+                    if(routes[i] != globalBest)
+                    {
+                        if(velocities[i] < 10)
+                            crossover(routes[i], globalBest, 1);
+                        else
+                            crossover(routes[i], globalBest, velocities[i]/10);
+                    }
                 }
                 else
                 {
@@ -409,6 +434,17 @@ public:
                 }
 
             }
+            if(globalBest == bestPath)
+            {
+                failed = false;
+                bestDistance = globalBestDistance;
+                break;
+            }
+        }
+        if(failed)
+        {
+            bestPath = globalBest;
+            bestDistance = globalBestDistance;
         }
         return "Particle Swarm Optimization";
     }

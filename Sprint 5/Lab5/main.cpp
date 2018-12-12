@@ -20,36 +20,22 @@ void test()
 {
     Search algo;
 
-    for(int i = 8; i < 11; i++)
+    for(int i = 4; i < 11; i++)
     {
-        algo.Load(i);
         cout << "Number of Nodes: " << i << endl << endl;
         for(unsigned int j = 0; j < 4; j++)
         {
-            if(j != 2)
-            {
+//            if(j != 2)
+//            {
+                algo.Load(i);
                 algo.Select(j);
                 algo.Execute();
                 algo.Stats();
-            }
+//            }
         }
 
         cout << "------------------------------------------" << endl << endl;
     }
-
-//    for(int i = 20; i < 101; i+=10)
-//    {
-//        cout << "Number of Nodes: " << i << endl << endl;
-//        for(unsigned int j = 0; j < 1; j++)
-//        {
-//            algo.Load(i);
-//            algo.Select(j);
-//            algo.Execute();
-//            algo.Stats();
-//        }
-
-//        cout << "------------------------------------------" << endl << endl;
-//    }
 }
 
 //runs the whole program
@@ -57,7 +43,7 @@ int main()
 {
     test();   //uncomment to see how I obtained the data for the excel sheet
 //    Search algo;
-//    for(unsigned int i = 0; i < 2; i++)
+//    for(unsigned int i = 0; i < 4; i++)
 //    {
 //        algo.Load();
 //        algo.Select(i);

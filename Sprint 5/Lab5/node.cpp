@@ -14,8 +14,6 @@ Node::Node(int in, float x, float y, float z)
     this->z = z;
 }
 
-
-
 void Node::addConnection(Node &in)
 {
     connections.push_back(in);

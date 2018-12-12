@@ -13,6 +13,8 @@ void Search::Load()
     vec.clear();
     f.readFile(vec);
     vec = f.loadGraph();
+    activeAlgo = TSP_Algo::Brute_Force;
+    activeAlgo(vec, bestPath, bestDistance, possiblePaths, possibleDistances);
 }
 
 void Search::Load(int count)
@@ -26,6 +28,9 @@ void Search::Load(int count)
         float z = rand() % 11;
         vec.push_back(Node(i + 1, x, y, z));
     }
+    bestDistance = 1000000000;
+    activeAlgo = TSP_Algo::Brute_Force;
+    activeAlgo(vec, bestPath, bestDistance, possiblePaths, possibleDistances);
 }
 
 
@@ -84,7 +89,7 @@ void Search::Stats()
 //    }
 //    std::cout << bestPath[0];
 //    std::cout << endl;
-    std::cout << "Best Path Length: " << bestDistance << endl << endl;
+//    std::cout << "Best Path Length: " << bestDistance << endl << endl;
 
     std::cout << "Run Time: " << setprecision(3) << runTime  << " seconds " << endl;
     std::cout << endl << endl;
